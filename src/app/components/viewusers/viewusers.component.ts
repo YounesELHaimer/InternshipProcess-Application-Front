@@ -15,7 +15,7 @@ export class ViewusersComponent implements OnInit {
 
 
   etudiants: any[] | undefined
-  url: string = "http://localhost:8080/";
+  url: string = "http://localhost:4200/";
   isEditMode: boolean = false;
   addEtudiantForm: FormGroup;
   updateEtudiantForm: FormGroup;

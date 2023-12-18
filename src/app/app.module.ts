@@ -6,20 +6,26 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 
 import { ViewusersComponent } from './components/viewusers/viewusers.component';
+import { StudentLoginComponent } from './components/studentLogin/studentLogin.component';
+import { StudentPage1Component } from './components/studentPage1/studentPage1.component';
+
 import { ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    
-    ViewusersComponent
+    ViewusersComponent,
+    StudentLoginComponent,
+    StudentPage1Component
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule
   ],
   providers: [],
   bootstrap: [AppComponent]
