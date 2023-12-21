@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { Observable, catchError, throwError } from 'rxjs'
 import { Etudiant } from './Etudiant';
+import { ChefFiliere } from './ChefFiliere';
+import { Filiere } from './Filiere';
 
 @Injectable({
   providedIn: 'root'
@@ -13,9 +15,10 @@ export class AppService {
   constructor(private http: HttpClient) { }
 
   // Add Etudiant - Create
-  addEtudiant(etudiant: Etudiant){
-    return this.http.post<Etudiant>(`${this.url}add`, etudiant)
+  addEtudiant(etudiant: Etudiant, filiereId: number){
+    return this.http.post<Etudiant>(`${this.url}add/${filiereId}`, etudiant);
   }
+  
 
   // Get Etudiants - Read
   getEtudiants(): Observable<any[]>{
@@ -43,10 +46,26 @@ export class AppService {
   deleteEtudiant(id: number): Observable<any>{
     return this.http.delete<any>(`${this.url}delete/${id}`)
   }
-  importEtudiants(file: File): Observable<any> {
+  importEtudiants(file: File, filiereId: number): Observable<any> {
     const formData = new FormData();
     formData.append('file', file);
 
-    return this.http.post(`${this.url}import`, formData);
+    // Ajoutez l'ID de la filière à l'URL
+    return this.http.post(`${this.url}import/${filiereId}`, formData);
   }
+  loginChefFiliere(nom: string, motDePasse: string): Observable<ChefFiliere> {
+    const loginRequest = { nom: nom, motDePasse: motDePasse };
+    return this.http.post<ChefFiliere>(`${this.url}login`, loginRequest);
+  }
+  
+  
+  
+  getEtudiantsByFiliereId(id: number): Observable<Etudiant[]> {
+    return this.http.get<Etudiant[]>(`${this.url}${id}/etudiants`);
+  }
+  getFiliereById(id: number): Observable<Filiere> {
+    return this.http.get<Filiere>(`${this.url}${id}`);
+  }
+  
+  
 }

@@ -11,6 +11,9 @@ import { StudentPage1Component } from './components/studentPage1/studentPage1.co
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { FirstYearStudentComponent } from './components/first-year-student/first-year-student.component';
+import { SecondYearStudentComponent } from './components/second-year-student/second-year-student.component';
+import { ThirdYearStudentComponent } from './components/third-year-student/third-year-student.component';
 
 
 @NgModule({
@@ -18,7 +21,10 @@ import { RouterModule } from '@angular/router';
     AppComponent,
     ViewusersComponent,
     StudentLoginComponent,
-    StudentPage1Component
+    StudentPage1Component,
+    FirstYearStudentComponent,
+    SecondYearStudentComponent,
+    ThirdYearStudentComponent
   ],
   imports: [
     BrowserModule,

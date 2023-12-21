@@ -4,6 +4,9 @@ import { ViewusersComponent } from './components/viewusers/viewusers.component';
 import { StudentLoginComponent } from './components/studentLogin/studentLogin.component';
 import { StudentPage1Component } from './components/studentPage1/studentPage1.component';
 import { StudentAuthGuard } from './student-auth.guard';
+import { FirstYearStudentComponent } from './components/first-year-student/first-year-student.component';
+import { SecondYearStudentComponent } from './components/second-year-student/second-year-student.component';
+import { ThirdYearStudentComponent } from './components/third-year-student/third-year-student.component';
 
 
 const routes: Routes = [
@@ -19,11 +22,26 @@ const routes: Routes = [
   { 
     path: 'student/page/1', 
     component: StudentPage1Component,
-    canActivate: [StudentAuthGuard]
+   // canActivate: [StudentAuthGuard]
   },
   { 
-    path: 'admin/students/view', 
-    component: ViewusersComponent 
+    path: 'admin/FirstYearStudents/view/:filiereId', 
+    component: FirstYearStudentComponent,
+   
+  },
+  { 
+    path: 'admin/SecondYearStudents/view/:filiereId', 
+    component: SecondYearStudentComponent,
+   
+  },
+  { 
+    path: 'admin/ThirdYearStudents/view/:filiereId', 
+    component: ThirdYearStudentComponent,
+   
+  },
+  {
+    path: 'admin/students/view/:filiereId',
+    component: ViewusersComponent,
   },
   
 ];
