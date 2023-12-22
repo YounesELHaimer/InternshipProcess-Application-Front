@@ -5,7 +5,5 @@ export interface Etudiant {
     email: string
     cne: string
     cin: string
-    
-    
-    
+    niveau: string
 }

@@ -166,6 +166,10 @@
             <div class="invalid-feedback">CIN is required!</div>
           </div>
           <div class="mb-3">
+            <input formControlName="niveau" type="text" class="form-control form-control-lg" placeholder="Enter Niveau" required>
+            <div class="invalid-feedback">Niveau is required!</div>
+          </div>
+          <div class="mb-3">
             <button type="button" class="btn btn-primary btn-block btn-lg" (click)="addEtudiant()">Add User</button>
           </div>
         </form>
@@ -206,6 +210,7 @@
             <input formControlName="cin" type="text" class="form-control form-control-lg" placeholder="Enter CIN" required>
             <div class="invalid-feedback">CIN is required!</div>
           </div>
+          
           <div class="mb-3">
             <button type="button" class="btn btn-success btn-block btn-lg" (click)="updateEtudiant()">Update User</button>
           </div>
