@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Etudiant } from 'src/app/Etudiant';
 import { AppService } from 'src/app/app.service';
 
@@ -22,8 +22,9 @@ export class ViewusersComponent implements OnInit {
   selectedFile: File | undefined;  
   currentPage = 1;
   itemsPerPage = 7;
+  filiereId: number | undefined;
 
-  constructor(private service: AppService, private fb: FormBuilder) {
+  constructor(private service: AppService, private fb: FormBuilder, private route: ActivatedRoute) {
     this.myScriptElement = document.createElement('script');
     this.myScriptElement.src = ' https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.bundle.min.js';
     document.body.appendChild(this.myScriptElement);
@@ -48,18 +49,80 @@ export class ViewusersComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.fetchEtudiants();
-  }
-
- fetchEtudiants() {
-    // Fetch the latest data from the server and update the etudiants property
-    this.service.getEtudiants().subscribe(data => {
-      // Reverse the array to display the latest data first
-      this.etudiants = data.reverse();
-      // Update the current page to 1 after fetching new data
-      this.currentPage = 1;
+    this.route.params.subscribe((params) => {
+      this.filiereId = params['filiereId'];
+      // Utilize filiereId as needed
+     
+      this.fetchEtudiants(this.filiereId!);
     });
   }
+  
+  fetchEtudiants(filiereId: number) {
+   
+    // Assurez-vous que filiereId existe avant d'effectuer la requête
+    if (filiereId) {
+      // Utilisez l'ID de la filière pour récupérer les étudiants associés à cette filière
+      this.service.getEtudiantsByFiliereId(filiereId).subscribe(data => {
+        // Reverse the array to display the latest data first
+        this.etudiants = data.reverse();
+        // Update the current page to 1 after fetching new data
+        this.currentPage = 1;
+      });
+    } else {
+      // Gérez le cas où filiereId n'est pas disponible (peut-être rediriger vers une page d'erreur ou effectuer une autre action)
+      console.error("ID de filière non disponible");
+    }
+  }
+  addEtudiant() {
+    const newEtudiant = this.addEtudiantForm.value;
+  
+    this.route.params.subscribe((params) => {
+      const filiereId = params['filiereId'];
+  
+      this.service.addEtudiant(newEtudiant, filiereId).subscribe(
+        () => {
+          // Après un ajout réussi, récupérez à nouveau les étudiants pour mettre à jour la liste
+          this.fetchEtudiants(filiereId);
+  
+          // Effacez le formulaire après l'ajout réussi
+          this.addEtudiantForm.reset();
+        },
+        (error) => {
+          // Gérer les erreurs
+          console.error("Erreur lors de l'ajout de l'étudiant", error);
+        }
+      );
+    });
+  }
+  
+  // ...
+  
+  importEtudiants() {
+    if (!this.selectedFile) {
+      console.log('Please select a file.');
+      return;
+    }
+  
+    this.route.params.subscribe((params) => {
+      const filiereId = params['filiereId'];
+  
+      this.service.importEtudiants(this.selectedFile!, filiereId).subscribe(
+        response => {
+          console.log('Import successful:', response);
+  
+          // Fetch the updated data after import
+          this.fetchEtudiants(filiereId);
+          
+          // Ajoutez toute manipulation ou rétroaction supplémentaire à l'utilisateur
+        },
+        error => {
+          console.error('Import failed:', error);
+          // Gérez l'erreur comme nécessaire
+        }
+      );
+    });
+  }
+  
   nextPage() {
     const totalPages = Math.ceil((this.etudiants?.length || 0) / this.itemsPerPage);
     if (this.currentPage < totalPages) {
@@ -79,14 +142,8 @@ export class ViewusersComponent implements OnInit {
     return this.etudiants?.slice(start, end);
   }
   
-  addEtudiant() {
-    const newEtudiant = this.addEtudiantForm.value;
-    this.service.addEtudiant(newEtudiant).subscribe(() => {
-      this.fetchEtudiants();
-      // Clear the form after successful addition
-      this.addEtudiantForm.reset();
-    });
-  }
+  
+  
 
   deleteEtudiant(id: number) {
     this.service.deleteEtudiant(id).subscribe(() => {
@@ -114,7 +171,8 @@ export class ViewusersComponent implements OnInit {
       this.service.updateEtudiant(id, updatedEtudiant).subscribe(
         response => {
           console.log('Update successful:', response);
-          this.fetchEtudiants();
+          //this.fetchEtudiants();
+          location.reload();
           this.isEditMode = false;
           this.updateEtudiantForm.reset();
         },
@@ -131,27 +189,8 @@ export class ViewusersComponent implements OnInit {
     this.selectedFile = event.target.files[0];
   }
 
-  importEtudiants() {
-    if (!this.selectedFile) {
-      console.log('Please select a file.');
-      return;
-    }
   
-    this.service.importEtudiants(this.selectedFile).subscribe(
-      response => {
-        console.log('Import successful:', response);
   
-        // Fetch the updated data after import
-        this.fetchEtudiants();
-  
-        // Add any additional handling or feedback to the user
-      },
-      error => {
-        console.error('Import failed:', error);
-        // Handle the error or provide feedback to the user
-      }
-    );
-  }
   
   
 }

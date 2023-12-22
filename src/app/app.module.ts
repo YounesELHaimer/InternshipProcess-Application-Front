@@ -15,6 +15,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort'
 
+import { FirstYearStudentComponent } from './components/first-year-student/first-year-student.component';
+import { SecondYearStudentComponent } from './components/second-year-student/second-year-student.component';
+import { ThirdYearStudentComponent } from './components/third-year-student/third-year-student.component';
 
 
 @NgModule({
@@ -22,7 +25,10 @@ import { MatSortModule } from '@angular/material/sort'
     AppComponent,
     ViewusersComponent,
     StudentLoginComponent,
-    StudentPage1Component
+    StudentPage1Component,
+    FirstYearStudentComponent,
+    SecondYearStudentComponent,
+    ThirdYearStudentComponent
   ],
   imports: [
     BrowserModule,
