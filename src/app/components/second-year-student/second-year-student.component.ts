@@ -44,7 +44,7 @@ export class SecondYearStudentComponent {
       email: ['', [Validators.required, Validators.email]],
       cne: ['', Validators.required],
       cin: ['', Validators.required],
-      Niveau: ['2'] // Set the Niveau for first-year students
+      niveau: ['2'] // Set the Niveau for first-year students
     });
   }
 

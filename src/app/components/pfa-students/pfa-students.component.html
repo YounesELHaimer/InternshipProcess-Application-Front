@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css">
+    
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Etudiants</title>
+</head>
+<body>
+    <div class="sidebar close">
+        <div class="logo-details">
+          <i class='bx bxl-c-plus-plus'></i>
+          <span class="logo_name">Gestion Stages</span>
+        </div>
+        <ul class="nav-links">
+          <li>
+            <a [routerLink]="['/admin/students/view', filiereId]">
+              <i class='bx bx-grid-alt' ></i>
+              <span class="link_name">Etudiants</span>
+            </a>
+            <ul class="sub-menu blank">
+              <li><a class="link_name"  [routerLink]="['/admin/students/view', filiereId]">Etudiants</a></li>
+            </ul>
+          </li>
+          <li>
+            <div class="iocn-link">
+              <a href="#">
+                <i class='bx bx-collection' ></i>
+                <span class="link_name">Niveau</span>
+              </a>
+              <i class='bx bxs-chevron-down arrow' ></i>
+            </div>
+            <ul class="sub-menu">
+              <li><a class="link_name" href="#">Niveau</a></li>
+              <li> <a [routerLink]="['/admin/FirstYearStudents/view', filiereId]">Première année</a></li>
+              <li> <a [routerLink]="['/admin/SecondYearStudents/view', filiereId]">Deuxième année</a></li>
+              <li> <a [routerLink]="['/admin/ThirdYearStudents/view', filiereId]">Troisième année</a></li>
+            </ul>
+          </li>
+          <li>
+            <div class="iocn-link">
+              <a href="#">
+                <i class='bx bx-book-alt' ></i>
+                <span class="link_name">Stages</span>
+              </a>
+              <i class='bx bxs-chevron-down arrow' ></i>
+            </div>
+            <ul class="sub-menu">
+              <li><a class="link_name" href="#">Stages</a></li>
+              <li><a [routerLink]="['/admin/InitiationStudents/view', filiereId]">Initiation</a></li>
+              <li><a [routerLink]="['/admin/PfaStudents/view', filiereId]">PFA</a></li>
+              <li><a [routerLink]="['/admin/PfeStudents/view', filiereId]">PFE</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">
+              <i class='bx bx-pie-chart-alt-2' ></i>
+              <span class="link_name">Analytics</span>
+            </a>
+            <ul class="sub-menu blank">
+              <li><a class="link_name" href="#">Analytics</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">
+              <i class='bx bx-line-chart' ></i>
+              <span class="link_name">Chart</span>
+            </a>
+            <ul class="sub-menu blank">
+              <li><a class="link_name" href="#">Chart</a></li>
+            </ul>
+          </li>
+          <li>
+            <div class="iocn-link">
+              <a href="#">
+                <i class='bx bx-plug' ></i>
+                <span class="link_name">Professeurs</span>
+              </a>
+              <i class='bx bxs-chevron-down arrow' ></i>
+            </div>
+            <ul class="sub-menu">
+              <li><a class="link_name" href="#">Professeurs</a></li>
+              <li><a href="#">Jurry</a></li>
+              <li><a href="#">Encadrant</a></li>
+              
+            </ul>
+          </li>
+          <li>
+            <a href="#">
+              <i class='bx bx-compass' ></i>
+              <span class="link_name">Explore</span>
+            </a>
+            <ul class="sub-menu blank">
+              <li><a class="link_name" href="#">Explore</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">
+              <i class='bx bx-history'></i>
+              <span class="link_name">History</span>
+            </a>
+            <ul class="sub-menu blank">
+              <li><a class="link_name" href="#">History</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">
+              <i class='bx bx-cog' ></i>
+              <span class="link_name">Setting</span>
+            </a>
+            <ul class="sub-menu blank">
+              <li><a class="link_name" href="#">Setting</a></li>
+            </ul>
+          </li>
+          <li>
+        <div class="profile-details">
+          <div class="profile-content">
+            <!--<img src="image/profile.jpg" alt="profileImg">-->
+          </div>
+          <div class="name-job">
+            <div class="profile_name">Prem Shahi</div>
+            <div class="job">Web Desginer</div>
+          </div>
+          <i class='bx bx-log-out' ></i>
+        </div>
+      </li>
+    </ul>
+      </div>
+      <section class="home-section">
+        <div class="home-content">
+          <i class='bx bx-menu' ></i>
+          <span class="text">Processus STAGES</span>
+          
+        </div>
+
+
+
+        <div class="container mt-5">
+            <div class="row">
+              <div class="col-lg-12">
+                <h4 class="text-primary">la liste des stages de PFA!</h4>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-lg-12">
+                <div id="showAlert"></div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="table-container table-responsive">
+                  <table class="table table-striped table-bordered text-center">
+                    <thead>
+                      <tr>
+                        <th>Etudiant</th>
+                        <th>Organisme D'accueil</th>
+                        <th>Sujet</th>
+                        <th>Type</th>
+                        <th>Date De Début</th>
+                        <th>Date Fin</th>
+                        
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let stage of visibleStages">
+                        <td>{{ stage.etudiant.nom + ' ' + stage.etudiant.prenom }}</td>
+                        <td>{{ stage.organismeDaccueil }}</td>
+                        <td>{{ stage.sujet }}</td>
+                        <td>{{ stage.type }}</td>
+                        <td>{{ stage.dateDeDebut | date: 'shortDate' }}</td>
+                        <td>{{ stage.dateFin | date: 'shortDate' }}</td>
+                        
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="text-center">
+                  <button class="btn btn-secondary" (click)="prevPage()" [disabled]="currentPage === 1">Previous</button>
+                  <span class="mx-2">Page {{ currentPage }}</span>
+                  <button class="btn btn-secondary" (click)="nextPage()" [disabled]="currentPage === totalPages">Next</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          
+      </section>
+      
+    
+   
+</body>
+</html>
+
+<router-outlet></router-outlet>

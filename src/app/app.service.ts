@@ -4,6 +4,7 @@ import { Observable, catchError, throwError } from 'rxjs'
 import { Etudiant } from './Etudiant';
 import { ChefFiliere } from './ChefFiliere';
 import { Filiere } from './Filiere';
+import { Stage } from './Stage';
 
 @Injectable({
   providedIn: 'root'
@@ -65,6 +66,9 @@ export class AppService {
   }
   getFiliereById(id: number): Observable<Filiere> {
     return this.http.get<Filiere>(`${this.url}${id}`);
+  }
+  getStagesByFiliereId(filiereId: number): Observable<Stage[]> {
+    return this.http.get<Stage[]>(`${this.url}${filiereId}/stages`);
   }
   
   

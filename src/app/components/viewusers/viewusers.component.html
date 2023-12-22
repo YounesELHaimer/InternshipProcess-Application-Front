@@ -50,9 +50,9 @@
             </div>
             <ul class="sub-menu">
               <li><a class="link_name" href="#">Stages</a></li>
-              <li><a href="#">Initiation</a></li>
-              <li><a href="#">PFA</a></li>
-              <li><a href="#">PFE</a></li>
+              <li><a [routerLink]="['/admin/InitiationStudents/view', filiereId]">Initiation</a></li>
+              <li><a [routerLink]="['/admin/PfaStudents/view', filiereId]">PFA</a></li>
+              <li><a [routerLink]="['/admin/PfeStudents/view', filiereId]">PFE</a></li>
             </ul>
           </li>
           <li>
@@ -164,6 +164,10 @@
           <div class="mb-3">
             <input formControlName="cin" type="text" class="form-control form-control-lg" placeholder="Enter CIN" required>
             <div class="invalid-feedback">CIN is required!</div>
+          </div>
+          <div class="mb-3">
+            <input formControlName="niveau" type="text" class="form-control form-control-lg" placeholder="Enter Niveau" required>
+            <div class="invalid-feedback">Niveau is required!</div>
           </div>
           <div class="mb-3">
             <button type="button" class="btn btn-primary btn-block btn-lg" (click)="addEtudiant()">Add User</button>
