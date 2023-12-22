@@ -19,7 +19,7 @@ const routes: Routes = [
   { 
     path: 'student/page/1', 
     component: StudentPage1Component,
-    canActivate: [StudentAuthGuard]
+    //canActivate: [StudentAuthGuard]
   },
   { 
     path: 'admin/students/view', 
