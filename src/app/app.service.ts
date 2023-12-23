@@ -28,7 +28,7 @@ export class AppService {
 
   // Get Etudiant by Id - Read
   getEtudiantById(id: number): Observable<Etudiant>{
-    return this.http.get<Etudiant>(`${this.url}Etudiant/${id}`)
+    return this.http.get<Etudiant>(`${this.url}etudiant/${id}`)
   }
 
   // Update Etudiant - Update
@@ -54,12 +54,19 @@ export class AppService {
     // Ajoutez l'ID de la filière à l'URL
     return this.http.post(`${this.url}import/${filiereId}`, formData);
   }
-  loginChefFiliere(nom: string, motDePasse: string): Observable<ChefFiliere> {
-    const loginRequest = { nom: nom, motDePasse: motDePasse };
+  loginChefFiliere(email: string, motDePasse: string): Observable<ChefFiliere> {
+    const loginRequest = { email: email, motDePasse: motDePasse };
     return this.http.post<ChefFiliere>(`${this.url}login`, loginRequest);
   }
-  
-  
+
+  loginEtudiant(email: string, motDePasse: string): Observable<Etudiant> {
+    const loginRequest = { email: email, motDePasse: motDePasse };
+    return this.http.post<Etudiant>(`${this.url}loginEtudiant`, loginRequest);
+  }
+
+  getStagesByEtudiantId(id: number): Observable<Stage[]> {
+    return this.http.get<Stage[]>(`${this.url}stages/etudiant/${id}`);
+  }
   
   getEtudiantsByFiliereId(id: number): Observable<Etudiant[]> {
     return this.http.get<Etudiant[]>(`${this.url}${id}/etudiants`);

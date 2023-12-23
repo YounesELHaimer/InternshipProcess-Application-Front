@@ -6,4 +6,5 @@ export interface Etudiant {
     cne: string
     cin: string
     niveau: string
+    motDePasse: string
 }

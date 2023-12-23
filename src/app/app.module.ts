@@ -7,10 +7,15 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { ViewusersComponent } from './components/viewusers/viewusers.component';
 import { StudentLoginComponent } from './components/studentLogin/studentLogin.component';
+import { AdminLoginComponent } from './components/adminLogin/adminLogin.component';
 import { StudentPage1Component } from './components/studentPage1/studentPage1.component';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort'
+
 import { FirstYearStudentComponent } from './components/first-year-student/first-year-student.component';
 import { SecondYearStudentComponent } from './components/second-year-student/second-year-student.component';
 import { ThirdYearStudentComponent } from './components/third-year-student/third-year-student.component';
@@ -24,6 +29,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
   declarations: [
     AppComponent,
     ViewusersComponent,
+    AdminLoginComponent,
     StudentLoginComponent,
     StudentPage1Component,
     FirstYearStudentComponent,
@@ -39,7 +45,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     HttpClientModule,
     ReactiveFormsModule,
     RouterModule,
-    NgbModule
+    BrowserAnimationsModule,
+    MatTableModule,
+    MatSortModule,
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

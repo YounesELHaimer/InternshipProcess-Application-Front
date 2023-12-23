@@ -6,8 +6,10 @@ import { Injectable } from '@angular/core';
 export class AuthService {
     private isAuthenticatedKey = 'isAuthenticated';
     private userRoleKey = 'userRole';   
+    private id = 'null';
 
-  login(role: string): void {
+  login(role: string, id: number): void {
+    localStorage.setItem(this.id, id.toString());
     localStorage.setItem(this.isAuthenticatedKey, 'true');
     localStorage.setItem(this.userRoleKey, role)
   }
@@ -23,5 +25,9 @@ export class AuthService {
 
   getUserRole(): string | null {
     return localStorage.getItem(this.userRoleKey);
+  }
+
+  getUserId(): string | null {
+    return localStorage.getItem(this.id);
   }
 }
