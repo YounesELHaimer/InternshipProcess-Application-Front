@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, AfterViewInit, Component, ViewChild, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute} from '@angular/router';
 import { Etudiant } from 'src/app/Etudiant';
 import { AppService } from 'src/app/app.service';
 import { AuthService } from 'src/app/auth.service';
@@ -48,20 +48,35 @@ const users: User[] = [
 })
 export class StudentPage1Component implements OnInit {
   myScriptElement: HTMLScriptElement | undefined;
-
+  studentId: number=0;
+  nom: string | null = '';
+  prenom: string | null = '';
   errorMessage: string = ''; 
-  loginForm: FormGroup;
-  dataSource: MatTableDataSource<any> = new MatTableDataSource<any>(ELEMENT_DATA);
+  stages: any[] | undefined
+  dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
 
-  constructor(private router: Router, private fb: FormBuilder, private authService: AuthService, private _liveAnnouncer: LiveAnnouncer) {
-    this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      motDePasse: ['', Validators.required],
-      
-    });
+
+  constructor(private route: ActivatedRoute, 
+    private appService: AppService, 
+    private router: Router, 
+    private authService: AuthService, 
+    private _liveAnnouncer: LiveAnnouncer) {
+    
   }
 
   ngOnInit(): void {
+    this.studentId = Number(this.route.snapshot.paramMap.get('etudiantId'));
+    this.appService.getEtudiantById(this.studentId).subscribe(
+      (student) => {
+        this.nom = student.nom;
+        this.prenom = student.prenom;
+      },
+      (error) => {
+        console.error('Error fetching student data', error);
+      }
+    );
+    this.fetchStages(this.studentId);
+
   }
   
   logout() {
@@ -69,8 +84,7 @@ export class StudentPage1Component implements OnInit {
     this.router.navigate(['']);
   }
 
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-
+  displayedColumns: string[] = ['type', 'debut', 'fin', 'organisme', 'sujet'];  
 
   @ViewChild(MatSort) sort: MatSort = new MatSort();
 
@@ -83,6 +97,19 @@ export class StudentPage1Component implements OnInit {
       this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
     } else {
       this._liveAnnouncer.announce('Sorting cleared');
+    }
+  }
+
+  fetchStages(filiereId: number) {
+    if (filiereId) {
+      this.appService.getStagesByEtudiantId(this.studentId).subscribe(data => {
+        this.stages = data.reverse();
+        this.dataSource.data = data.reverse();
+        console.log(this.stages);
+        console.log(this.dataSource);
+      });
+    } else {
+      console.error("Error de l'ID");
     }
   }
 

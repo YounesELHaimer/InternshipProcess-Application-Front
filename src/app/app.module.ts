@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { ViewusersComponent } from './components/viewusers/viewusers.component';
 import { StudentLoginComponent } from './components/studentLogin/studentLogin.component';
+import { AdminLoginComponent } from './components/adminLogin/adminLogin.component';
 import { StudentPage1Component } from './components/studentPage1/studentPage1.component';
 
 import { ReactiveFormsModule } from '@angular/forms';
@@ -24,6 +25,7 @@ import { ThirdYearStudentComponent } from './components/third-year-student/third
   declarations: [
     AppComponent,
     ViewusersComponent,
+    AdminLoginComponent,
     StudentLoginComponent,
     StudentPage1Component,
     FirstYearStudentComponent,

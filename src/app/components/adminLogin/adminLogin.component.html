@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/a81368914c.js"></script>
+    <title>Home Etudiants</title>
+</head>
+<body>
+  <img class="wave" src="../../../assets/wave.png" />
+  <img class="wave-right" src="../../../assets/wave-right.png" />
+  <div class="image-container">
+    <img class="ensa" src="../../../assets/logo-ensa-berrechid.png" />
+    <div class="vertical-line"></div>
+    <img class="uh1" src="../../../assets/logo-uh1.png" />
+  </div>
+  <div class="container">
+    <div class="img"></div>
+    <div class="login-content">
+      <form [formGroup]="loginForm" novalidate>
+        <img src="../../../assets/avatar.svg" />
+        <h2 class="title">Login</h2>
+        <div class="input-div one">
+          <div class="i">
+            <i class="fas fa-user"></i>
+          </div>
+          <div class="div">
+            <input type="text" class="input" formControlName="email" placeholder="Email institutionnel" required/>
+            <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="invalid-feedback">
+              Email is required!
+            </div>
+            <div *ngIf="loginForm.get('email')?.hasError('email') && loginForm.get('email')?.touched" class="invalid-feedback">
+              Invalid email format!
+            </div>
+          </div>
+        </div>
+        <div class="input-div pass">
+          <div class="i">
+            <i class="fas fa-lock"></i>
+          </div>
+          <div class="div">
+            <input type="password" class="input" formControlName="motDePasse" placeholder="Mot de passe" required/>
+            <div *ngIf="loginForm.get('motDePasse')?.invalid && loginForm.get('motDePasse')?.touched" class="invalid-feedback">
+              Mot de passe is required!
+            </div>
+          </div>
+        </div>
+        <a href="#">Mot de passe oublié ?</a>
+        <div *ngIf="errorMessage" class="error-message">
+          {{ errorMessage }}
+        </div>
+        <input type="submit" class="btn" value="Connecter" (click)="login()"/>
+      </form>
+    </div>
+  </div>
+  <script type="text/javascript" src="../../../assets/main.js"></script>
+</body>
+</html>
+
+
