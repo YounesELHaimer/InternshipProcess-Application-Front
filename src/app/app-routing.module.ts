@@ -9,6 +9,9 @@ import { AdminAuthGuard } from './admin-auth.guard';
 import { FirstYearStudentComponent } from './components/first-year-student/first-year-student.component';
 import { SecondYearStudentComponent } from './components/second-year-student/second-year-student.component';
 import { ThirdYearStudentComponent } from './components/third-year-student/third-year-student.component';
+import { PfeStudentsComponent } from './components/pfe-students/pfe-students.component';
+import { PfaStudentsComponent } from './components/pfa-students/pfa-students.component';
+import { InitiationStudentsComponent } from './components/initiation-students/initiation-students.component';
 
 
 const routes: Routes = [
@@ -49,6 +52,18 @@ const routes: Routes = [
     path: 'admin/students/view/:filiereId',
     component: ViewusersComponent,
     canActivate: [AdminAuthGuard]
+  },
+  {
+    path: 'admin/PfeStudents/view/:filiereId',
+    component: PfeStudentsComponent,
+  },
+  {
+    path: 'admin/PfaStudents/view/:filiereId',
+    component: PfaStudentsComponent,
+  },
+  {
+    path: 'admin/InitiationStudents/view/:filiereId',
+    component: InitiationStudentsComponent,
   },
   
 ];
