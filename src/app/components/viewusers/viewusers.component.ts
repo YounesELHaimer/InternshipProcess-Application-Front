@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs';
 import { Etudiant } from 'src/app/Etudiant';
 import { AppService } from 'src/app/app.service';
 
@@ -24,7 +25,7 @@ export class ViewusersComponent implements OnInit {
   itemsPerPage = 7;
   filiereId: number | undefined;
 
-  constructor(private service: AppService, private fb: FormBuilder, private route: ActivatedRoute) {
+  constructor(private service: AppService, private fb: FormBuilder, private route: ActivatedRoute, private router: Router) {
     this.myScriptElement = document.createElement('script');
     this.myScriptElement.src = ' https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.bundle.min.js';
     document.body.appendChild(this.myScriptElement);
@@ -34,6 +35,7 @@ export class ViewusersComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       cne: ['', Validators.required],
       cin: ['', Validators.required],
+      niveau: ['', Validators.required],
       
     });
 
@@ -45,10 +47,13 @@ export class ViewusersComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       cne: ['', Validators.required],
       cin: ['', Validators.required],
+      niveau: [''],
     });
   }
 
   ngOnInit(): void {
+   
+  
     this.route.params.subscribe((params) => {
       this.filiereId = params['filiereId'];
       // Utilize filiereId as needed

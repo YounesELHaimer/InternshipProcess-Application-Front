@@ -74,6 +74,9 @@ export class AppService {
   getFiliereById(id: number): Observable<Filiere> {
     return this.http.get<Filiere>(`${this.url}${id}`);
   }
+  getStagesByFiliereId(filiereId: number): Observable<Stage[]> {
+    return this.http.get<Stage[]>(`${this.url}${filiereId}/stages`);
+  }
   
   
 }
