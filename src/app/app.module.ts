@@ -21,8 +21,11 @@ import { SecondYearStudentComponent } from './components/second-year-student/sec
 import { ThirdYearStudentComponent } from './components/third-year-student/third-year-student.component';
 import { PfeStudentsComponent } from './components/pfe-students/pfe-students.component';
 import { PfaStudentsComponent } from './components/pfa-students/pfa-students.component';
+import { CountdownComponent } from './components/countdown/countdown.component';
+import { AjouterStagePFEComponent } from './components/ajouterStagePFE/ajouterStagePFE.component';
 import { InitiationStudentsComponent } from './components/initiation-students/initiation-students.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 
 
 @NgModule({
@@ -37,7 +40,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ThirdYearStudentComponent,
     PfeStudentsComponent,
     PfaStudentsComponent,
-    InitiationStudentsComponent
+    InitiationStudentsComponent,
+    AjouterStagePFEComponent,
+    CountdownComponent
   ],
   imports: [
     BrowserModule,

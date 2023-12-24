@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/a81368914c.js"></script>
+    <title>Home Etudiants</title>
+</head>
+<body>
+    <div class="nav-bar">
+        <div class="img">
+            <img class="ensa" src="../../../assets/logo-ensa-berrechid.png"/>
+        </div>
+        <div class="titre">
+            <h3>Application de gestion des stage</h3>
+        </div>
+    </div>
+    <button class="logout" (click)="logout()" ><i class=' bx bx-log-out' ></i></button>
+    <div class="name">
+        <p>{{nom}} {{prenom}}</p>
+    </div>
+    <div class="page d-flex flex-column align-items-center justify-content-center">
+        
+        
+        <div class="container p-5">
+            <h2 class=" mb-5 text-center" style="color: #3c3c65;">Enregister votre stage PFE</h2>
+            <form class="row g-3" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+              <div class="col-md-6">
+                <label class="form-label">Type</label>
+                <input placeholder="PFE" class="form-control" readonly>
+              </div>
+              <div class="col-md-6">
+                <label for="inputPassword4" class="form-label">Organisme d'accueil</label>
+                <input type="text" formControlName="organismeDaccueil" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['organismeDaccueil'].errors }" id="inputOrganismeDaccueil4">
+                <div *ngIf="submitted && f['organismeDaccueil'].errors" class="invalid-feedback">
+                  <div *ngIf="f['organismeDaccueil'].errors['required']">L'organisme d'accueil est obligatoire</div>
+               </div>
+              </div>
+              <div class="col-12">
+                <label for="inputAddress" class="form-label">Sujet</label>
+                <input type="text" formControlName="sujet" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['sujet'].errors }" id="inputSujet">
+                <div *ngIf="submitted && f['sujet'].errors" class="invalid-feedback">
+                  <div *ngIf=" f['sujet'].errors['required']">Sujet est obligatoire</div>
+               </div>
+              </div>
+              <div class="col-md-6">
+                <label for="inputCity" class="form-label">Date de debut</label>
+                <input type="date" formControlName="dateDeDebut" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['dateDeDebut'].errors }" id="inputDateDebut">
+                <div *ngIf="submitted && f['dateDeDebut'].errors" class="invalid-feedback">
+                  <div *ngIf="f['dateDeDebut'].errors['required']">Date de debut est obligatoire</div>
+               </div>
+              </div>
+              <div class="col-md-6">
+                <label for="inputState" class="form-label">Date de fin (prévus)</label>
+                <input type="date" formControlName="dateFin" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['dateFin'].errors }" id="inputDateFin">
+                <div *ngIf="submitted && f['dateFin'].errors" class="invalid-feedback">
+                  <div *ngIf="f['dateFin'].errors['required']">Date de fin est obligatoire</div>
+               </div>
+              </div>
+              <div class="col-12 mt-5">
+                <button type="submit" class="btn" style="background: #3c3c65; color: white;">Enregistrer</button>
+              </div>
+            </form>
+          </div>
+    </div>
+</body>
+</html>
+
+

@@ -1,0 +1,126 @@
+.page{
+    background-color: #E4E9F7;
+    height: 100%;
+    width: 100%;
+}
+
+.nav-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background-color: #8ac0ef;
+}
+
+.ensa {
+    position: absolute;
+    top: 12.5px;
+    height: 25px;
+    left: 50px;
+    width: 8%;    
+}
+
+.titre {
+    position: absolute;
+    top: 13px;
+    width: auto;
+    left: 200px;
+
+}
+
+.titre h3{
+    font-size: 20px;
+    font-family: "poppins", sans-serif;
+    color: #3c3c65;
+    font-weight: bold;
+}
+
+.logout {
+    position: absolute;
+    top: 0px;
+    right: 30px;
+    height: 50px;
+    font-size: 20px; 
+    color: #3c3c65; 
+    transition: color 0.2s;
+    background: transparent; 
+    border: none;
+}
+
+.logout:hover {
+    color: #3d97d0; 
+    cursor: pointer; 
+}
+
+.name{
+    position: absolute;
+    top: 13px;
+    right: 75px;
+    border-radius: 5px;
+    font-size: 15px;
+    place-items: center;
+    height: 27px;
+    display: grid;
+    justify-content: center;
+    align-items: center; 
+}
+
+.name p{
+    font-family: "poppins", sans-serif;
+    color: #3c3c65;
+    font-size: 17px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+
+.name p:hover {
+    color: #3d64d0; 
+    cursor: pointer; 
+}
+
+#countdown {
+    font-size: 2em;
+    color: #e44d26;
+    margin-top: 20px;
+  }
+
+  .count-down-timer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: black;
+    border-radius: 6px;
+    padding: 10px;
+  
+    > p {
+      margin: 5px 0 50px 0;
+      font: normal 43px sans-serif;
+      color: #3c3c65;
+        }
+  
+    .wrapper {
+
+        .description, .times {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 70px;
+        }
+    
+        .description {
+          > p { font: normal 20px sans-serif; }
+        }
+    
+        .times {
+          p {
+            letter-spacing: -2px;
+            font: normal 60px sans-serif;
+            color: #3c3c65;
+          }
+        }
+      }
+  }
+  

@@ -1,3 +1,8 @@
+.page{
+    background-color: #E4E9F7;
+    height: 100%;
+    width: 100%;
+}
 .nav-bar {
     position: fixed;
     top: 0;
@@ -75,7 +80,7 @@
 }
 
 .container {
-    padding-top: 50px;
+    padding-top: 70px;
     margin: 0px;
     padding-left: 50px;
     padding-right: 50px;
@@ -87,7 +92,7 @@
 .btn {
     position: absolute;
     right: 50px;
-    top: 80px;
+    top: 100px;
     font-size: 14px;
     display: block;
     border: 0px;
@@ -107,13 +112,9 @@
     font-size: 25px;
 }
 
-.mat-elevation-z8{
-    border-radius: 13px;
-    
-}
-
 .mat-mdc-table {
     border-radius: 8px;
+    overflow:hidden !important;
 }
 
 .mat-mdc-table {
@@ -129,11 +130,81 @@
 .mdc-data-table__table {
     min-width: 96.8%;
     border: 0;
-    white-space: nowrap;
+    white-space: normal;
     border-spacing: 0;
-    table-layout: normal;
+    table-layout: fixed;
 }
 
+.mdc-data-table__row:last-child .mdc-data-table__cell {
+    border-bottom: none;
+    padding-right: 0px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
 
+.mat-mdc-table tbody, .mat-mdc-table tfoot, .mat-mdc-table thead, .mat-mdc-cell, .mat-mdc-footer-cell, .mat-mdc-header-row, .mat-mdc-row, .mat-mdc-footer-row, .mat-mdc-table .mat-mdc-header-cell {
+    background: inherit;
+    padding-right: 0;
+    
+}
 
+.badge {
+  display: inline-block;
+  padding: .25em .4em;
+  font-size: 75%;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: .25rem;
+}
+
+.bg-orange {
+    background-color: #fbf0da;
+    color: #73510d;
+    display: inline-block;
+    padding: .25em .4em;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 25px;
+  }
+  
+  .bg-green {
+    background-color: #d6f0e0;
+    color: #0d6832;
+    display: inline-block;
+    padding: .25em .4em;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 25px;
+  }
+  
+  .bg-red {
+    background-color: #fbdada;
+    color: #730d0d;
+    display: inline-block;
+    padding: .25em .4em;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 25px;
+  }
 

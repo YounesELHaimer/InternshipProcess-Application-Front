@@ -12,6 +12,10 @@ import { ThirdYearStudentComponent } from './components/third-year-student/third
 import { PfeStudentsComponent } from './components/pfe-students/pfe-students.component';
 import { PfaStudentsComponent } from './components/pfa-students/pfa-students.component';
 import { InitiationStudentsComponent } from './components/initiation-students/initiation-students.component';
+import { AjouterStagePFEComponent } from './components/ajouterStagePFE/ajouterStagePFE.component';
+import { AjouterStageComponent } from './components/ajouter-stage/ajouter-stage.component';
+import { CountdownComponent } from './components/countdown/countdown.component';
+
 
 
 const routes: Routes = [
@@ -64,6 +68,21 @@ const routes: Routes = [
   {
     path: 'admin/InitiationStudents/view/:filiereId',
     component: InitiationStudentsComponent,
+  },
+  { 
+    path: 'student/AddStage/PFE/:etudiantId', 
+    component: AjouterStagePFEComponent,
+    canActivate: [StudentAuthGuard]
+  },
+  { 
+    path: 'student/AddStage/:etudiantId', 
+    component: AjouterStageComponent,
+    canActivate: [StudentAuthGuard]
+  },
+  { 
+    path: 'student/countdown/:etudiantId', 
+    component: CountdownComponent,
+    canActivate: [StudentAuthGuard]
   },
   
 ];
