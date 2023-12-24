@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http'
+import { HttpClient, HttpParams } from '@angular/common/http'
 import { Observable, catchError, throwError } from 'rxjs'
 import { Etudiant } from './Etudiant';
 import { ChefFiliere } from './ChefFiliere';
 import { Filiere } from './Filiere';
 import { Stage } from './Stage';
+import { Professeur } from './Professeur';
 
 @Injectable({
   providedIn: 'root'
@@ -81,6 +82,49 @@ export class AppService {
   getStagesByFiliereId(filiereId: number): Observable<Stage[]> {
     return this.http.get<Stage[]>(`${this.url}${filiereId}/stages`);
   }
+  //professeur
+  getAllProfesseurs(): Observable<Professeur[]> {
+    return this.http.get<Professeur[]>(`${this.url}professeurs`);
+  }
+
+  getProfesseurById(id: number): Observable<Professeur> {
+    return this.http.get<Professeur>(`${this.url}professeurs/${id}`);
+  }
+
+  addProfesseur(professeur: Professeur): Observable<Professeur> {
+    return this.http.post<Professeur>(`${this.url}addprofesseurs`, professeur);
+  }
+
+  updateProfesseur(id: number, professeur: Professeur): Observable<void> {
+    return this.http.put<void>(`${this.url}professeurs/${id}`, professeur);
+  }
+
+  deleteProfesseur(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.url}professeurs/${id}`);
+  }
+
+  importProfesseurs(file: File): Observable<void> {
+    const formData = new FormData();
+    formData.append('file', file);
+
+    return this.http.post<void>(`${this.url}professeurs/import`, formData);
+  } 
+  assignStagesToEncadrants(encadrantIds: number[], year: string, filiereId: number): Observable<string> {
+    const url = `${this.url}stages/assign/${filiereId}`;
   
+    // Include encadrantIds as query parameters
+    const params = new HttpParams().set('encadrantIds', encadrantIds.join(',')).set('year', year);
+  
+    return this.http.post<string>(url, null, { params });
+  }
+  
+  countStagesByYearAndFiliereId(year: string, filiereId: number): Observable<number> {
+    const url = `${this.url}stages/count/${filiereId}?year=${year}`;
+    return this.http.get<number>(url);
+  }
+  countStagesByYearAndFiliereIdAndEncadrantIsNull(year: string, filiereId: number): Observable<number> {
+    const url = `${this.url}stages/count/null-encadrant/${filiereId}?year=${year}`;
+    return this.http.get<number>(url);
+  }
   
 }

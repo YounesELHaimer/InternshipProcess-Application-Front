@@ -1,5 +1,7 @@
 export interface Professeur {
-    id: number;
-    nomComplet: string;
-    
-  }
+    id: number
+    nom: string
+    prenom: string
+    email: string
+    departement: string
+}

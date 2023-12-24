@@ -17,6 +17,8 @@ import { AjouterStagePFAComponent } from './components/ajouter-stage-pfa/ajouter
 import { AjouterStageComponent } from './components/ajouter-stage/ajouter-stage.component';
 import { CountdownComponent } from './components/countdown/countdown.component';
 
+import { EncadrantComponent } from './components/encadrant/encadrant.component';
+import { JuryComponent } from './components/jury/jury.component';
 
 
 const routes: Routes = [
@@ -36,7 +38,7 @@ const routes: Routes = [
   { 
     path: 'student/page/1/:etudiantId', 
     component: StudentPage1Component,
-    canActivate: [StudentAuthGuard]
+    //canActivate: [StudentAuthGuard]
   },
   { 
     path: 'admin/FirstYearStudents/view/:filiereId', 
@@ -56,7 +58,7 @@ const routes: Routes = [
   {
     path: 'admin/students/view/:filiereId',
     component: ViewusersComponent,
-    canActivate: [AdminAuthGuard]
+    //canActivate: [AdminAuthGuard]
   },
   {
     path: 'admin/PfeStudents/view/:filiereId',
@@ -91,6 +93,14 @@ const routes: Routes = [
     canActivate: [StudentAuthGuard]
   },
   
+  {
+    path: 'admin/encadrant/view/:filiereId',
+    component: EncadrantComponent,
+  },
+  {
+    path: 'admin/jury/view/:filiereId',
+    component: JuryComponent,
+  },
 ];
 
 @NgModule({

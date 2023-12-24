@@ -30,6 +30,9 @@ import { AjouterStageComponent } from './components/ajouter-stage/ajouter-stage.
 
 
 
+import { FormsModule } from '@angular/forms';
+import { EncadrantComponent } from './components/encadrant/encadrant.component';
+import { JuryComponent } from './components/jury/jury.component';
 
 
 @NgModule({
@@ -48,7 +51,9 @@ import { AjouterStageComponent } from './components/ajouter-stage/ajouter-stage.
     AjouterStagePFEComponent,
     CountdownComponent,
     AjouterStagePFAComponent,
-    AjouterStageComponent
+    AjouterStageComponent,
+    EncadrantComponent,
+    JuryComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +64,8 @@ import { AjouterStageComponent } from './components/ajouter-stage/ajouter-stage.
     BrowserAnimationsModule,
     MatTableModule,
     MatSortModule,
-    NgbModule
+    NgbModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

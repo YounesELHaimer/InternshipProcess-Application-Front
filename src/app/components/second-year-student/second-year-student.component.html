@@ -82,9 +82,9 @@
               <i class='bx bxs-chevron-down arrow' ></i>
             </div>
             <ul class="sub-menu">
-              <li><a class="link_name" href="#">Professeurs</a></li>
-              <li><a href="#">Jurry</a></li>
-              <li><a href="#">Encadrant</a></li>
+              <li><a class="link_name" >Professeurs</a></li>
+              <li><a [routerLink]="['/admin/jury/view', filiereId]">Jury</a></li>
+              <li><a [routerLink]="['/admin/encadrant/view', filiereId]">Encadrant</a></li>
               
             </ul>
           </li>

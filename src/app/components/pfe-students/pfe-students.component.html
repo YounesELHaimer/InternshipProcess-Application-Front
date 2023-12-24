@@ -82,9 +82,9 @@
               <i class='bx bxs-chevron-down arrow' ></i>
             </div>
             <ul class="sub-menu">
-              <li><a class="link_name" href="#">Professeurs</a></li>
-              <li><a href="#">Jurry</a></li>
-              <li><a href="#">Encadrant</a></li>
+              <li><a class="link_name" >Professeurs</a></li>
+              <li><a [routerLink]="['/admin/jury/view', filiereId]">Jury</a></li>
+              <li><a [routerLink]="['/admin/encadrant/view', filiereId]">Encadrant</a></li>
               
             </ul>
           </li>
@@ -171,66 +171,77 @@
         <!-- Etudiant Details Modal End -->
     
         <div class="container mt-5">
-            <div class="row">
-                <div class="col-lg-12 d-flex justify-content-between align-items-center">
-                    <div>
-                        <h4 class="text-primary">La liste des stages de PFE!</h4>
-                    </div>
-                    <div>
-                        <!-- ... (other container content) ... -->
-                    </div>
+          <div class="row">
+            <div class="col-lg-12 d-flex justify-content-between align-items-center">
+              <div>
+                <h4 class="text-primary">La liste des stages de PFE!</h4>
+              </div>
+              <div>
+                <!-- Add the dropdown for selecting the year -->
+                <div class="form-group">
+                  <label for="yearSelect"><b>Filtrer par année:</b></label>
+                  <br> 
+                  <select class="form-control" id="yearSelect" [(ngModel)]="selectedYear" (change)="fetchStages()">
+                    <option value="">Toutes les années</option>
+                    <option *ngFor="let year of getUniqueYears()" [value]="year">{{ year }}</option>
+                  </select>
+                  <br>
                 </div>
+                
+                
+              </div>
             </div>
-            <hr>
-            <div class="row">
-                <div class="col-lg-12">
-                    <div id="showAlert"></div>
-                </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-lg-12">
+              <div id="showAlert"></div>
             </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="table-container table-responsive">
-                        <table class="table table-striped table-bordered text-center">
-                            <thead>
-                                <tr>
-                                    <th>Etudiant</th>
-                                    <th>Organisme D'accueil</th>
-                                    <th>Sujet</th>
-                                    <th>Type</th>
-                                    <th>Date De Début</th>
-                                    <th>Date Fin</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let stage of visibleStages">
-                                    <td>
-                                        <!-- Add a button to trigger the modal -->
-                                        <button class="btn btn-link" (click)="openEtudiantDetailsModal(stage.etudiant)">
-                                          {{ stage.etudiant.nom + ' ' + stage.etudiant.prenom }}
-                                      </button>
-                                      
-                                    </td>
-                                    <td>{{ stage.organismeDaccueil }}</td>
-                                    <td>{{ stage.sujet }}</td>
-                                    <td>{{ stage.type }}</td>
-                                    <td>{{ stage.dateDeDebut | date: 'shortDate' }}</td>
-                                    <td>{{ stage.dateFin | date: 'shortDate' }}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="table-container table-responsive">
+                <table class="table table-striped table-bordered text-center">
+                  <thead>
+                    <tr>
+                      <th>Etudiant apogée</th>
+                      <th>Organisme D'accueil</th>
+                      <th>Sujet</th>
+                      <th>Type</th>
+                      <th>Date De Début</th>
+                      <th>Date Fin</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let stage of visibleStages">
+                      <td>
+                        <!-- Add a button to trigger the modal -->
+                        <button class="btn btn-link" (click)="openEtudiantDetailsModal(stage.etudiant)">
+                          {{ stage.etudiant.codeApogee}}
+                        </button>
+                      </td>
+                      <td>{{ stage.organismeDaccueil }}</td>
+                      <td>{{ stage.sujet }}</td>
+                      <td>{{ stage.type }}</td>
+                      <td>{{ stage.dateDeDebut | date: 'dd/MM/yyyy' }}</td>
+                      <td>{{ stage.dateFin | date: 'dd/MM/yyyy' }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="text-center">
-                        <button class="btn btn-secondary" (click)="prevPage()" [disabled]="currentPage === 1">Previous</button>
-                        <span class="mx-2">Page {{ currentPage }}</span>
-                        <button class="btn btn-secondary" (click)="nextPage()" [disabled]="currentPage === totalPages">Next</button>
-                    </div>
-                </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="text-center">
+                <button class="btn btn-secondary" (click)="prevPage()" [disabled]="currentPage === 1">Précédent</button>
+                <span class="mx-2">Page {{ currentPage }}</span>
+                <button class="btn btn-secondary" (click)="nextPage()" [disabled]="currentPage === totalPages">Suivant</button>
+              </div>
             </div>
+          </div>
         </div>
+        
     </section>
     
       
