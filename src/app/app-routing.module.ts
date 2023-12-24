@@ -12,6 +12,8 @@ import { ThirdYearStudentComponent } from './components/third-year-student/third
 import { PfeStudentsComponent } from './components/pfe-students/pfe-students.component';
 import { PfaStudentsComponent } from './components/pfa-students/pfa-students.component';
 import { InitiationStudentsComponent } from './components/initiation-students/initiation-students.component';
+import { EncadrantComponent } from './components/encadrant/encadrant.component';
+import { JuryComponent } from './components/jury/jury.component';
 
 
 const routes: Routes = [
@@ -31,7 +33,7 @@ const routes: Routes = [
   { 
     path: 'student/page/1/:etudiantId', 
     component: StudentPage1Component,
-    canActivate: [StudentAuthGuard]
+    //canActivate: [StudentAuthGuard]
   },
   { 
     path: 'admin/FirstYearStudents/view/:filiereId', 
@@ -51,7 +53,7 @@ const routes: Routes = [
   {
     path: 'admin/students/view/:filiereId',
     component: ViewusersComponent,
-    canActivate: [AdminAuthGuard]
+    //canActivate: [AdminAuthGuard]
   },
   {
     path: 'admin/PfeStudents/view/:filiereId',
@@ -65,7 +67,14 @@ const routes: Routes = [
     path: 'admin/InitiationStudents/view/:filiereId',
     component: InitiationStudentsComponent,
   },
-  
+  {
+    path: 'admin/encadrant/view/:filiereId',
+    component: EncadrantComponent,
+  },
+  {
+    path: 'admin/jury/view/:filiereId',
+    component: JuryComponent,
+  },
 ];
 
 @NgModule({

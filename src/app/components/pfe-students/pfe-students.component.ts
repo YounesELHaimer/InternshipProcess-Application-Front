@@ -15,6 +15,7 @@ export class PfeStudentsComponent {
   stages: Stage[] = [];
   selectedEtudiant: Etudiant | undefined;
   modalRef: NgbModalRef | undefined;
+  selectedYear: string | undefined;
 
   etudiantDetailsModal: NgbModalRef | undefined;
 
@@ -47,17 +48,22 @@ export class PfeStudentsComponent {
     
   }
   closeEtudiantDetailsModal() {
-    if (this.modalRef) {
-      this.modalRef.dismiss();
-    }
+    const modalElement = this.el.nativeElement.querySelector('#etudiantDetailsModal');
+    
+    // Manually close the modal using Bootstrap's modal method
+    this.renderer.removeClass(modalElement, 'show');
+    this.renderer.setStyle(modalElement, 'display', 'none');
   }
+  
   fetchStages() {
     if (this.filiereId) {
       this.service.getStagesByFiliereId(this.filiereId).subscribe(data => {
         // Reverse the array to display the latest data first
         this.stages = data.reverse().filter(stage => {
           // Check if stage.type is a non-empty string before calling toLowerCase()
-          return typeof stage.type === 'string' && stage.type === 'PFE';
+          const isPFE = typeof stage.type === 'string' && stage.type.toLowerCase() === 'pfe';
+          const isMatchingYear = !this.selectedYear || stage.annee === this.selectedYear; // Add this line
+          return isPFE && isMatchingYear; // Update this line
         });
         this.totalPages = Math.ceil(this.stages.length / this.itemsPerPage);
         this.currentPage = 1;
@@ -65,6 +71,9 @@ export class PfeStudentsComponent {
     }
   }
   
+  getUniqueYears(): string[] {
+    return [...new Set(this.stages.map(stage => stage.annee || ''))];
+  }
   
   
 
