@@ -7,13 +7,12 @@ import {LiveAnnouncer} from '@angular/cdk/a11y';
 import {MatSort, Sort} from '@angular/material/sort';
 import * as moment from 'moment';
 
-
 @Component({
-  selector: 'app-ajouter-stage',
-  templateUrl: './ajouter-stage.component.html',
-  styleUrls: ['./ajouter-stage.component.css']
+  selector: 'app-ajouter-stage-pfa',
+  templateUrl: './ajouter-stage-pfa.component.html',
+  styleUrls: ['./ajouter-stage-pfa.component.css']
 })
-export class AjouterStageComponent {
+export class AjouterStagePFAComponent {
   studentId: number=0;
   nom: string | null = '';
   prenom: string | null = '';

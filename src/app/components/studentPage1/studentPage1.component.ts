@@ -136,8 +136,10 @@ export class StudentPage1Component implements OnInit {
   
     if (this.niveau === "3" && isDateInRange) {
       this.router.navigate(['student/AddStage/PFE', this.studentId]);
-    } else if(this.niveau != "3" && isDateInRange) {
+    } else if(this.niveau == "1" && isDateInRange) {
       this.router.navigate(['student/AddStage', this.studentId]);
+    } else if(this.niveau == "2" && isDateInRange) {
+      this.router.navigate(['student/AddStage/PFA', this.studentId]);
     }
     else{
       this.router.navigate(['student/countdown', this.studentId]);
@@ -158,8 +160,8 @@ export class StudentPage1Component implements OnInit {
         endDate = new Date(currentDate.getFullYear(), 6, 15); 
       }
       else{
-        startDate = new Date(currentDate.getFullYear()+1, 5, 1); 
-        endDate = new Date(currentDate.getFullYear()+1, 6, 15); 
+        startDate = new Date(currentDate.getFullYear(), 10, 1); 
+        endDate = new Date(currentDate.getFullYear()+1, 11, 31); 
       }
     }
     return currentDate >= startDate && currentDate <= endDate;

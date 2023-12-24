@@ -25,6 +25,10 @@ import { CountdownComponent } from './components/countdown/countdown.component';
 import { AjouterStagePFEComponent } from './components/ajouterStagePFE/ajouterStagePFE.component';
 import { InitiationStudentsComponent } from './components/initiation-students/initiation-students.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AjouterStagePFAComponent } from './components/ajouter-stage-pfa/ajouter-stage-pfa.component';
+import { AjouterStageComponent } from './components/ajouter-stage/ajouter-stage.component';
+
+
 
 
 
@@ -42,7 +46,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     PfaStudentsComponent,
     InitiationStudentsComponent,
     AjouterStagePFEComponent,
-    CountdownComponent
+    CountdownComponent,
+    AjouterStagePFAComponent,
+    AjouterStageComponent
   ],
   imports: [
     BrowserModule,

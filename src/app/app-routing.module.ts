@@ -13,6 +13,7 @@ import { PfeStudentsComponent } from './components/pfe-students/pfe-students.com
 import { PfaStudentsComponent } from './components/pfa-students/pfa-students.component';
 import { InitiationStudentsComponent } from './components/initiation-students/initiation-students.component';
 import { AjouterStagePFEComponent } from './components/ajouterStagePFE/ajouterStagePFE.component';
+import { AjouterStagePFAComponent } from './components/ajouter-stage-pfa/ajouter-stage-pfa.component';
 import { AjouterStageComponent } from './components/ajouter-stage/ajouter-stage.component';
 import { CountdownComponent } from './components/countdown/countdown.component';
 
@@ -72,6 +73,11 @@ const routes: Routes = [
   { 
     path: 'student/AddStage/PFE/:etudiantId', 
     component: AjouterStagePFEComponent,
+    canActivate: [StudentAuthGuard]
+  },
+  { 
+    path: 'student/AddStage/PFA/:etudiantId', 
+    component: AjouterStagePFAComponent,
     canActivate: [StudentAuthGuard]
   },
   { 
