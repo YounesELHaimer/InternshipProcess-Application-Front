@@ -23,6 +23,9 @@ import { PfeStudentsComponent } from './components/pfe-students/pfe-students.com
 import { PfaStudentsComponent } from './components/pfa-students/pfa-students.component';
 import { InitiationStudentsComponent } from './components/initiation-students/initiation-students.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule } from '@angular/forms';
+import { EncadrantComponent } from './components/encadrant/encadrant.component';
+import { JuryComponent } from './components/jury/jury.component';
 
 
 @NgModule({
@@ -37,7 +40,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ThirdYearStudentComponent,
     PfeStudentsComponent,
     PfaStudentsComponent,
-    InitiationStudentsComponent
+    InitiationStudentsComponent,
+    EncadrantComponent,
+    JuryComponent
   ],
   imports: [
     BrowserModule,
@@ -49,6 +54,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     MatTableModule,
     MatSortModule,
     NgbModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
