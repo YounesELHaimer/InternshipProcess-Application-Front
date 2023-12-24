@@ -20,6 +20,10 @@ export class AppService {
   addEtudiant(etudiant: Etudiant, filiereId: number){
     return this.http.post<Etudiant>(`${this.url}add/${filiereId}`, etudiant);
   }
+
+  addStage(stage: Stage, etudiantId: number){
+    return this.http.post<Stage>(`${this.url}add/stage/${etudiantId}`, stage);
+  }
   
 
   // Get Etudiants - Read
@@ -68,7 +72,11 @@ export class AppService {
   getStagesByEtudiantId(id: number): Observable<Stage[]> {
     return this.http.get<Stage[]>(`${this.url}stages/etudiant/${id}`);
   }
-  
+
+  updateStage(id: number, stage: Stage): Observable<void> {
+    return this.http.put<void>(`${this.url}stage/${id}`, stage);
+  }
+
   getEtudiantsByFiliereId(id: number): Observable<Etudiant[]> {
     return this.http.get<Etudiant[]>(`${this.url}${id}/etudiants`);
   }

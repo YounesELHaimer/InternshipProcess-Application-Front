@@ -12,6 +12,11 @@ import { ThirdYearStudentComponent } from './components/third-year-student/third
 import { PfeStudentsComponent } from './components/pfe-students/pfe-students.component';
 import { PfaStudentsComponent } from './components/pfa-students/pfa-students.component';
 import { InitiationStudentsComponent } from './components/initiation-students/initiation-students.component';
+import { AjouterStagePFEComponent } from './components/ajouterStagePFE/ajouterStagePFE.component';
+import { AjouterStagePFAComponent } from './components/ajouter-stage-pfa/ajouter-stage-pfa.component';
+import { AjouterStageComponent } from './components/ajouter-stage/ajouter-stage.component';
+import { CountdownComponent } from './components/countdown/countdown.component';
+
 import { EncadrantComponent } from './components/encadrant/encadrant.component';
 import { JuryComponent } from './components/jury/jury.component';
 
@@ -67,6 +72,27 @@ const routes: Routes = [
     path: 'admin/InitiationStudents/view/:filiereId',
     component: InitiationStudentsComponent,
   },
+  { 
+    path: 'student/AddStage/PFE/:etudiantId', 
+    component: AjouterStagePFEComponent,
+    canActivate: [StudentAuthGuard]
+  },
+  { 
+    path: 'student/AddStage/PFA/:etudiantId', 
+    component: AjouterStagePFAComponent,
+    canActivate: [StudentAuthGuard]
+  },
+  { 
+    path: 'student/AddStage/:etudiantId', 
+    component: AjouterStageComponent,
+    canActivate: [StudentAuthGuard]
+  },
+  { 
+    path: 'student/countdown/:etudiantId', 
+    component: CountdownComponent,
+    canActivate: [StudentAuthGuard]
+  },
+  
   {
     path: 'admin/encadrant/view/:filiereId',
     component: EncadrantComponent,

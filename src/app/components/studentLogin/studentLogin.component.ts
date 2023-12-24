@@ -5,6 +5,8 @@ import { AppService } from 'src/app/app.service';
 import { AuthService } from 'src/app/auth.service';
 
 
+
+
 interface User {
   email: string;
   password: string;
@@ -22,6 +24,7 @@ const users: User[] = [
   styleUrls: ['./studentLogin.component.css'],
 })
 export class StudentLoginComponent implements OnInit {
+  hide = true;
   errorMessage: string = '';
   loginForm: FormGroup;
   myScriptElement: HTMLScriptElement | undefined;
@@ -43,52 +46,27 @@ export class StudentLoginComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  login() {
-    // Ajoutez ici la logique de vérification des données de connexion
-    const isValidCredentials = this.checkCredentials();
-
-    if ( !isValidCredentials) {
-      this.errorMessage = "l'adresse électronique et le mot de passe ne correspondent pas. Réessayez.";
-    }
-
-    /*this.appService.loginEtudiant(this.loginForm.value.email, this.loginForm.value.motDePasse).subscribe(
-      (response) => {
-        // La connexion réussie
-        if (response) {
-          
-          this.router.navigate(['student/page/1']);
-        } else {
-          console.error("La propriété 'filiere' est manquante dans la réponse.");
-        }
-      },
-      (error) => {
-        this.errorMessage =
-          "L'adresse électronique et le mot de passe ne correspondent pas. Réessayez.";
-      }
-    );*/
+  togglePasswordVisibility() {
+    this.hide = !this.hide;
   }
 
-  private checkCredentials(): boolean {
+  login() {
     
     this.appService.loginEtudiant(this.loginForm.value.email, this.loginForm.value.motDePasse).subscribe(
       (response) => {
           if (response) {
             this.authService.login('student', response.id);
             this.router.navigate(['student/page/1', response.id]);
-            return true;
           } else {
-            return false;
+            this.errorMessage = "l'adresse électronique et le mot de passe ne correspondent pas. Réessayez.";
           }
       },
       (error) => {
         this.errorMessage =
           "L'adresse électronique et le mot de passe ne correspondent pas. Réessayez.";
-          return false;
       }
     );
-    return false;
+
   }
-  
-  
   
 }

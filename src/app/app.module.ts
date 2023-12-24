@@ -21,12 +21,23 @@ import { SecondYearStudentComponent } from './components/second-year-student/sec
 import { ThirdYearStudentComponent } from './components/third-year-student/third-year-student.component';
 import { PfeStudentsComponent } from './components/pfe-students/pfe-students.component';
 import { PfaStudentsComponent } from './components/pfa-students/pfa-students.component';
+import { CountdownComponent } from './components/countdown/countdown.component';
+import { AjouterStagePFEComponent } from './components/ajouterStagePFE/ajouterStagePFE.component';
 import { InitiationStudentsComponent } from './components/initiation-students/initiation-students.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AjouterStagePFAComponent } from './components/ajouter-stage-pfa/ajouter-stage-pfa.component';
+import { AjouterStageComponent } from './components/ajouter-stage/ajouter-stage.component';
+
+
+
 import { FormsModule } from '@angular/forms';
 import { EncadrantComponent } from './components/encadrant/encadrant.component';
 import { JuryComponent } from './components/jury/jury.component';
-
+import { AfficherJurysComponent } from './components/afficher-jurys/afficher-jurys.component';
+import { ModifierStageComponent } from './components/modifier-stage/modifier-stage.component';
+import { MatIconModule } from '@angular/material/icon';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { AfficherEncadrantComponent } from './components/afficher-encadrant/afficher-encadrant.component';
 
 @NgModule({
   declarations: [
@@ -41,8 +52,15 @@ import { JuryComponent } from './components/jury/jury.component';
     PfeStudentsComponent,
     PfaStudentsComponent,
     InitiationStudentsComponent,
+    AjouterStagePFEComponent,
+    CountdownComponent,
+    AjouterStagePFAComponent,
+    AjouterStageComponent,
     EncadrantComponent,
-    JuryComponent
+    JuryComponent,
+    AfficherJurysComponent,
+    ModifierStageComponent,
+    AfficherEncadrantComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,7 +72,9 @@ import { JuryComponent } from './components/jury/jury.component';
     MatTableModule,
     MatSortModule,
     NgbModule,
-    FormsModule
+    FormsModule,
+    MatIconModule,
+    MatFormFieldModule
   ],
   providers: [],
   bootstrap: [AppComponent]

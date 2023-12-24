@@ -220,6 +220,18 @@ a:hover {
   background-position: right;
 }
 
+.eye-btn{
+  position: absolute;
+  right: 8px;
+  top: 15px;
+  font-size: 18px;
+  color: #3c3c65;
+  z-index: 1000;
+  background:none;
+  border: none;
+
+  
+}
 @media screen and (max-width: 1050px) {
   .container {
     grid-gap: 5rem;

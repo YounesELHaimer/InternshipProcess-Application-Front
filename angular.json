@@ -28,7 +28,7 @@
               "./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
               "src/assets/sidebar.js",
               "src/assets/main.js",
-              
+              "src/assets/countdown.js",
               "./node_modules/bootstrap/dist/js/bootstrap.min.js"
               ],
               
@@ -37,6 +37,7 @@
                 "node_modules/bootstrap/dist/css/bootstrap.min.css",
                 "./node_modules/bootstrap/dist/css/bootstrap.min.css",
                 "node_modules/@fortawesome/fontawesome-free/css/all.css"
+                
               ]
           },
           "configurations": {
