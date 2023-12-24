@@ -1,5 +1,6 @@
 .page{
     background-color: #E4E9F7;
+    margin-top: 25px;
     height: 100%;
     width: 100%;
 }
@@ -37,7 +38,7 @@
 }
 
 .logout {
-    position: absolute;
+    position: fixed;
     top: 0px;
     right: 30px;
     height: 50px;
@@ -54,7 +55,7 @@
 }
 
 .name{
-    position: absolute;
+    position: fixed;
     top: 13px;
     right: 75px;
     border-radius: 5px;
@@ -74,8 +75,16 @@
     white-space: nowrap;
 }
 
-
 .name p:hover {
     color: #3d64d0; 
     cursor: pointer; 
 }
+
+.container{
+    background: #ffffff;
+    border-radius: 20px;
+    margin: auto;
+    justify-self: center;
+    align-items: center;
+}
+

@@ -33,7 +33,11 @@ import { AjouterStageComponent } from './components/ajouter-stage/ajouter-stage.
 import { FormsModule } from '@angular/forms';
 import { EncadrantComponent } from './components/encadrant/encadrant.component';
 import { JuryComponent } from './components/jury/jury.component';
-
+import { AfficherJurysComponent } from './components/afficher-jurys/afficher-jurys.component';
+import { ModifierStageComponent } from './components/modifier-stage/modifier-stage.component';
+import { MatIconModule } from '@angular/material/icon';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { AfficherEncadrantComponent } from './components/afficher-encadrant/afficher-encadrant.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +57,10 @@ import { JuryComponent } from './components/jury/jury.component';
     AjouterStagePFAComponent,
     AjouterStageComponent,
     EncadrantComponent,
-    JuryComponent
+    JuryComponent,
+    AfficherJurysComponent,
+    ModifierStageComponent,
+    AfficherEncadrantComponent,
   ],
   imports: [
     BrowserModule,
@@ -65,7 +72,9 @@ import { JuryComponent } from './components/jury/jury.component';
     MatTableModule,
     MatSortModule,
     NgbModule,
-    FormsModule
+    FormsModule,
+    MatIconModule,
+    MatFormFieldModule
   ],
   providers: [],
   bootstrap: [AppComponent]

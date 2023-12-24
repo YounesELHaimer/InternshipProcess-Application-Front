@@ -8,6 +8,7 @@ export interface Stage {
     type: string;
     dateDeDebut: Date;
     dateFin: Date;
+    annee: string;
     etudiant: Etudiant; // Assuming you have an Etudiant interface
     encadrant: Professeur; // Assuming you have a Professeur interface
     jurys: Professeur[]; // Assuming you have a Professeur interface

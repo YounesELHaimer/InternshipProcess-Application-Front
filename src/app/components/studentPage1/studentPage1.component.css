@@ -35,6 +35,14 @@
     font-weight: bold;
 }
 
+.iconTable{
+    font-size: 16px; 
+    color: gray; 
+    transition: color 0.2s;
+    background: transparent; 
+    border: none;
+}
+
 .logout {
     position: absolute;
     top: 0px;
@@ -46,6 +54,7 @@
     background: transparent; 
     border: none;
 }
+
 
 .logout:hover {
     color: #3d97d0; 
@@ -97,6 +106,21 @@
     display: block;
     border: 0px;
     border-radius: 7px;
+}
+
+.btnTable{
+    height: 25px;
+    width: 110px;
+    font-size: 13.2px;
+    display: block;
+    border: 0px;
+    border-radius: 7px;
+    background: #3c3c65;
+    color: white;
+}
+
+.mat-sort-header-content {
+    text-align: left !important;
 }
 
 .table-responsive{
@@ -208,3 +232,19 @@
     border-radius: 25px;
   }
 
+  .no-data{
+    height: 70px;
+  }
+  .aucun{
+    font-size: 17px;
+    color: gray;
+    align-items: center;
+    text-align: center;
+  }
+
+  .popup-container{
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background-color: rgb(174, 174, 174);
+  }
