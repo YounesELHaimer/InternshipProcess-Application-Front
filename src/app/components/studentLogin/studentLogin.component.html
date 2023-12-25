@@ -39,10 +39,20 @@
           <div class="i">
             <i class="fas fa-lock"></i>
           </div>
+          <button class="eye-btn" (click)="togglePasswordVisibility()">
+            <i class="{{ hide ? 'fa-solid fa-eye-slash' : 'fa-solid fa-eye' }}"> </i>
+          </button>
           <div class="div">
-            <input type="password" class="input" formControlName="motDePasse" placeholder="Mot de passe" required/>
+            <input 
+              [type]="hide ? 'password' : 'text'" 
+              class="input" 
+              formControlName="motDePasse" 
+              placeholder="Mot de passe" 
+              required
+            />
+            
             <div *ngIf="loginForm.get('motDePasse')?.invalid && loginForm.get('motDePasse')?.touched" class="invalid-feedback">
-              Mot de passe is required!
+              Mot de passe requis!
             </div>
           </div>
         </div>

@@ -10,67 +10,137 @@
     <title>Home Etudiants</title>
 </head>
 <body>
-    <div class="nav-bar">
-        <div class="img">
-            <img class="ensa" src="../../../assets/logo-ensa-berrechid.png"/>
-        </div>
-        <div class="titre">
-            <h3>Application de gestion des stage</h3>
-        </div>
-        <button class="logout" (click)="logout()" ><i class=' bx bx-log-out' ></i></button>
-        <div class="name">
-            <p>{{nom}} {{prenom}}</p>
-        </div>
+    <div *ngIf="isJuryPopupOpen" style="position: absolute; background-color: rgba(115, 115, 115, 0.509); height: 100%; width: 100%;">
+        <app-afficher-jurys [jurys]="selectedStageJurys" (closePopupEvent)="closeJuryPopup()"></app-afficher-jurys>
     </div>
-    
-    <div class="container">
-        <button class="btn btn-primary" type="button">Modifier Votre Statut</button>
-        <div class="table-responsive">
-            <h3 class="nameTable">Liste de vos stages</h3>
-            <table class="table" mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)" class="mat-elevation-z8">
-                <!-- Position Column -->
-                <ng-container matColumnDef="type">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by type">
-                    Type
-                    </th>
-                    <td mat-cell *matCellDef="let element"> {{element.type}} </td>
-                </ng-container>
-                <ng-container matColumnDef="debut">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by debut">
-                    Date de debut
-                    </th>
-                    <td mat-cell *matCellDef="let element">{{ element.dateDeDebut | date: 'dd/MM/yyyy' }}</td>
-                </ng-container>
-    
-                <!-- Name Column -->
-                <ng-container matColumnDef="fin">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by fin">
-                    Date de fin
-                    </th>
-                    <td mat-cell *matCellDef="let element">{{ element.dateFin | date: 'dd/MM/yyyy' }}</td>
-                </ng-container>
-    
-                <!-- Weight Column -->
-                <ng-container matColumnDef="organisme">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by organisme">
-                    Organisme D'acceil
-                    </th>
-                    <td mat-cell *matCellDef="let element"> {{element.organismeDaccueil}} </td>
-                </ng-container>
-    
-                <!-- Symbol Column -->
-                <ng-container matColumnDef="sujet">
-                    <th mat-header-cell *matHeaderCellDef>
-                    Sujet
-                    </th>
-                    <td mat-cell *matCellDef="let element"> {{element.sujet}} </td>
-                </ng-container>
-    
-                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-            </table>
+    <div *ngIf="isModifierPopupOpen" style="position: absolute; background-color: rgba(115, 115, 115, 0.509); height: 100%; width: 100%;">
+        <app-modifier-stage [stage]="selectedStage" (closePopupEvent)="closeModifierPopup()"></app-modifier-stage>
+    </div>
+    <div *ngIf="isEncadrantPopupOpen" style="position: absolute; background-color: rgba(115, 115, 115, 0.509); height: 100%; width: 100%;">
+        <app-afficher-encadrant [encadrant]="selectedEncadrant" (closePopupEvent)="closeEncadrantPopup()"></app-afficher-encadrant>
+    </div>
+
+
+    <div class="page">
+        <div class="nav-bar">
+            <div class="img">
+                <img class="ensa" src="../../../assets/logo-ensa-berrechid.png"/>
+            </div>
+            <div class="titre">
+                <h3>Application de gestion des stage</h3>
+            </div>
+            <button class="logout" (click)="logout()" ><i class=' bx bx-log-out' ></i></button>
+            <div class="name">
+                <p>{{nom}} {{prenom}}</p>
+            </div>
         </div>
+
+
         
+
+        <div class="container">
+            
+            <div class="table-responsive">
+                <h3 class="nameTable">La liste de vos stages</h3>
+                <button class="btn btn-primary" type="button" (click)="AddStage()">Ajouter un stage</button>
+                <table class="table" mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)" class="mat-elevation-z10 bg-white">
+                    <!-- Position Column -->
+                    <ng-container matColumnDef="type">
+                        <th mat-header-cell *matHeaderCellDef style="background: rgb(239, 239, 239); width: 90px;" >
+                        Type
+                        </th>
+                        <td mat-cell *matCellDef="let element"> {{element.type}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="debut">
+                        <th mat-header-cell *matHeaderCellDef style="background: rgb(239, 239, 239); width: 130px;">
+                        Date de debut
+                        </th>
+                        <td mat-cell *matCellDef="let element">{{ element.dateDeDebut | date: 'dd/MM/yyyy' }}</td>
+                    </ng-container>
+        
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="fin">
+                        <th mat-header-cell *matHeaderCellDef style="background: rgb(239, 239, 239); width: 110px;" >
+                        Date de fin
+                        </th>
+                        <td mat-cell *matCellDef="let element">{{ element.dateFin | date: 'dd/MM/yyyy' }}</td>
+                    </ng-container>
+        
+                    <!-- Weight Column -->
+                    <ng-container matColumnDef="organisme" >
+                        <th mat-header-cell *matHeaderCellDef style="background: rgb(239, 239, 239); width: 165px;" >
+                        Organisme D'acceil
+                        </th>
+                        <td mat-cell *matCellDef="let element"> {{element.organismeDaccueil}} </td>
+                    </ng-container>
+        
+                    <!-- Symbol Column -->
+                    <ng-container matColumnDef="sujet" >
+                        <th mat-header-cell *matHeaderCellDef style="background: rgb(239, 239, 239); ">
+                        Sujet
+                        </th>
+                        <td mat-cell *matCellDef="let element"> {{element.sujet}} </td>
+                    </ng-container>
+
+                    <span class="badge badge-warning rounded-pill d-inline">Terminer</span>
+                    
+                    <ng-container matColumnDef="statut">
+                        <th mat-header-cell *matHeaderCellDef style="background: rgb(239, 239, 239);width: 95px;">
+                        Statut
+                        </th>
+                        <td mat-cell *matCellDef="let element">
+                            <span [ngClass]="{
+                                'bg-orange': element.statut === 'En Cours',
+                                'bg-green': element.statut === 'Terminé',
+                                'bg-red': element.statut === 'En Attente'
+                                }">
+                                {{ element.statut }}
+                            </span>
+                          </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="encadrant">
+                        <th mat-header-cell *matHeaderCellDef style="background: rgb(239, 239, 239); width: 130px;">
+                        Encadrant
+                        </th>
+                        <td mat-cell *matCellDef="let element"> 
+                            <ng-container *ngIf="element.encadrantNomComplet !== '-' else simpleText">
+                                <a (click)="openEncadrantPopup(element.encadrant )">{{ element.encadrantNomComplet }}</a>
+                            </ng-container>
+                            <ng-template #simpleText>{{ element.encadrantNomComplet }}</ng-template>  </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="jurys">
+                        <th mat-header-cell *matHeaderCellDef style="background: rgb(239, 239, 239); width: 130px;">
+                        Jurys
+                        </th>
+                        <td mat-cell *matCellDef="let element"> 
+                            <button class="btnTable" type="button" (click)="openJuryPopup(element.id)">Afficher les jurys</button>
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="actions">
+                        <th mat-header-cell *matHeaderCellDef style="background: rgb(239, 239, 239); width: 80px;">
+                        
+                        </th>
+                        <td mat-cell *matCellDef="let element"> 
+                            <button (click)="openModifierPopup(element.id)" class="iconTable" type="button" *ngIf="element.statut !== 'Terminé'" ><i class="fa-regular fa-pen-to-square"></i></button>
+                        </td>
+                    </ng-container>
+                    
+        
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns; let i = index;"></tr>
+                    <tr class="no-data *mat-row" *matNoDataRow>
+                        <td class="aucun mat-cell" [attr.colspan]="displayedColumns.length">
+                            Vous n'avez encore effectué aucun stage
+                        </td>
+                      </tr>
+                </table>
+            </div>
+            
+
+        </div>
     </div>
 
 </body>

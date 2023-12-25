@@ -21,8 +21,15 @@ import { SecondYearStudentComponent } from './components/second-year-student/sec
 import { ThirdYearStudentComponent } from './components/third-year-student/third-year-student.component';
 import { PfeStudentsComponent } from './components/pfe-students/pfe-students.component';
 import { PfaStudentsComponent } from './components/pfa-students/pfa-students.component';
+import { CountdownComponent } from './components/countdown/countdown.component';
+import { AjouterStagePFEComponent } from './components/ajouterStagePFE/ajouterStagePFE.component';
 import { InitiationStudentsComponent } from './components/initiation-students/initiation-students.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AjouterStagePFAComponent } from './components/ajouter-stage-pfa/ajouter-stage-pfa.component';
+import { AjouterStageComponent } from './components/ajouter-stage/ajouter-stage.component';
+
+
+
 import { FormsModule } from '@angular/forms';
 import { EncadrantComponent } from './components/encadrant/encadrant.component';
 import { JuryComponent } from './components/jury/jury.component';
@@ -43,6 +50,11 @@ import { CustomChartComponent } from './components/custom-chart/custom-chart.com
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 
+import { AfficherJurysComponent } from './components/afficher-jurys/afficher-jurys.component';
+import { ModifierStageComponent } from './components/modifier-stage/modifier-stage.component';
+
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { AfficherEncadrantComponent } from './components/afficher-encadrant/afficher-encadrant.component';
 
 @NgModule({
   declarations: [
@@ -57,13 +69,20 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     PfeStudentsComponent,
     PfaStudentsComponent,
     InitiationStudentsComponent,
+    AjouterStagePFEComponent,
+    CountdownComponent,
+    AjouterStagePFAComponent,
+    AjouterStageComponent,
     EncadrantComponent,
     JuryComponent,
     StageDetailsComponent,
     AnalytiqueComponent,
     PieChartComponent,
     StackedBarChartComponent,
-    CustomChartComponent
+    CustomChartComponent,
+    AfficherJurysComponent,
+    ModifierStageComponent,
+    AfficherEncadrantComponent,
   ],
   imports: [
     BrowserModule,
@@ -85,7 +104,9 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     LayoutModule,
     FontAwesomeModule,
     ChartModule,
-    NgxChartsModule
+    NgxChartsModule,
+    
+    MatFormFieldModule
   ],
   providers: [],
   bootstrap: [AppComponent]

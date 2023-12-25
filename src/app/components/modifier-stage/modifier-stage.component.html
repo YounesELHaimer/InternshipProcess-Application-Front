@@ -1,0 +1,45 @@
+<div class="popup-container">
+    <div class="d-flex flex-column align-items-center justify-content-center">
+        <div class="container p-3">
+            <button  class="icon" (click)="closePopup()"><i class="fa-solid fa-xmark"></i></button>
+            <h2 class=" mb-5 text-center" style="color: #3c3c65;">Modifer</h2>
+            <form class="row g-3" [formGroup]="registerForm"  (ngSubmit)="modifier()">
+              <div class="col-md-6">
+                <label class="form-label">Type</label>
+                <input placeholder={{stage.type}}  class="form-control" readonly>
+              </div>
+              <div class="col-md-6">
+                <label for="inputPassword4" class="form-label">Organisme d'accueil</label>
+                <input [(ngModel)]="stage.organismeDaccueil" type="text" formControlName="organismeDaccueil" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['organismeDaccueil'].errors }" id="inputOrganismeDaccueil4">
+                <div *ngIf="submitted && f['organismeDaccueil'].errors" class="invalid-feedback">
+                  <div *ngIf="f['organismeDaccueil'].errors['required']">L'organisme d'accueil est obligatoire</div>
+               </div>
+              </div>
+              <div class="col-12">
+                <label for="inputAddress" class="form-label">Sujet</label>
+                <input [(ngModel)]="stage.sujet" type="text" formControlName="sujet" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['sujet'].errors }" id="inputSujet">
+                <div *ngIf="submitted && f['sujet'].errors" class="invalid-feedback">
+                  <div *ngIf=" f['sujet'].errors['required']">Sujet est obligatoire</div>
+               </div>
+              </div>
+              <div class="col-md-6">
+                <label for="inputCity" class="form-label">Date de debut</label>
+                <input [(ngModel)]="stage.dateDeDebut" type="date" formControlName="dateDeDebut" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['dateDeDebut'].errors }" id="inputDateDebut" [readonly]="stage.statut === 'En Cours'">
+                <div *ngIf="submitted && f['dateDeDebut'].errors" class="invalid-feedback">
+                  <div *ngIf="f['dateDeDebut'].errors['required']">Date de debut est obligatoire</div>
+               </div>
+              </div>
+              <div class="col-md-6">
+                <label for="inputState" class="form-label">Date de fin (prévus)</label>
+                <input [(ngModel)]="stage.dateFin" type="date" formControlName="dateFin" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['dateFin'].errors }" id="inputDateFin">
+                <div *ngIf="submitted && f['dateFin'].errors" class="invalid-feedback">
+                  <div *ngIf="f['dateFin'].errors['required']">Date de fin est obligatoire</div>
+               </div>
+              </div>
+              <div class="col-12 mt-5">
+                <button type="submit" class="btn" style="background: #3c3c65; color: white;">Modifier</button>
+              </div>
+            </form>
+          </div>
+    </div>
+</div>

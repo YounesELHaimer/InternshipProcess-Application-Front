@@ -7,6 +7,10 @@ import { AuthService } from 'src/app/auth.service';
 import {LiveAnnouncer} from '@angular/cdk/a11y';
 import {MatSort, Sort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
+import { PopupService } from 'src/app/popup.service';
+import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
+
 
 
 interface User {
@@ -51,15 +55,22 @@ export class StudentPage1Component implements OnInit {
   studentId: number=0;
   nom: string | null = '';
   prenom: string | null = '';
+  niveau: string | null = '';
   errorMessage: string = ''; 
-  stages: any[] | undefined
+  stages: any[] | undefined;
+  selectedStage: any[] | undefined;
   dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
+  isJuryPopupOpen = false;
+  isModifierPopupOpen= false;
+  isEncadrantPopupOpen= false;
+
 
 
   constructor(private route: ActivatedRoute, 
     private appService: AppService, 
     private router: Router, 
     private authService: AuthService, 
+    private popupService: PopupService,
     private _liveAnnouncer: LiveAnnouncer) {
     
   }
@@ -70,6 +81,7 @@ export class StudentPage1Component implements OnInit {
       (student) => {
         this.nom = student.nom;
         this.prenom = student.prenom;
+        this.niveau = student.niveau;
       },
       (error) => {
         console.error('Error fetching student data', error);
@@ -84,7 +96,7 @@ export class StudentPage1Component implements OnInit {
     this.router.navigate(['']);
   }
 
-  displayedColumns: string[] = ['type', 'debut', 'fin', 'organisme', 'sujet'];  
+  displayedColumns: string[] = ['type', 'debut', 'fin', 'organisme', 'sujet', 'statut' ,'encadrant', 'jurys', 'actions'];  
 
   @ViewChild(MatSort) sort: MatSort = new MatSort();
 
@@ -104,14 +116,97 @@ export class StudentPage1Component implements OnInit {
     if (filiereId) {
       this.appService.getStagesByEtudiantId(this.studentId).subscribe(data => {
         this.stages = data.reverse();
-        this.dataSource.data = data.reverse();
-        console.log(this.stages);
-        console.log(this.dataSource);
+        this.dataSource.data = data.map(item => ({
+          ...item,
+          encadrantNomComplet: item.encadrant ? 'Pr. '+item.encadrant.nom+' '+item.encadrant.prenom : '-',
+          statut: (() => {
+            const currentDate = new Date();
+            const debutDate = new Date(item.dateDeDebut);
+            const finDate = new Date(item.dateFin);
+  
+            if (currentDate >= debutDate && currentDate <= finDate) {
+              return 'En Cours';
+            } else if (currentDate > finDate) {
+              return 'Terminé';
+            } else {
+              return 'En Attente';
+            }
+          })(),
+        }));
+        console.log(this.dataSource.data);
       });
     } else {
       console.error("Error de l'ID");
     }
   }
 
+  AddStage(){
+    const currentDate = new Date();
+    const isDateInRange = this.checkIfCurrentDateIsInRange(currentDate);
+  
+    if (this.niveau === "3" && isDateInRange) {
+      this.router.navigate(['student/AddStage/PFE', this.studentId]);
+    } else if(this.niveau == "1" && isDateInRange) {
+      this.router.navigate(['student/AddStage', this.studentId]);
+    } else if(this.niveau == "2" && isDateInRange) {
+      this.router.navigate(['student/AddStage/PFA', this.studentId]);
+    }
+    else{
+      this.router.navigate(['student/countdown', this.studentId]);
+    }
+  }
+  
+  checkIfCurrentDateIsInRange(currentDate: Date): boolean {
+    // Définir les dates de début et de fin de la plage (1/11/yyyy au 31/01/yyyy+1)
+    let startDate = new Date(currentDate.getFullYear(), 10, 1); // 10 représente novembre (0-indexed)
+    let endDate = new Date(currentDate.getFullYear(), 11, 15); // 0 représente janvier (0-indexed)
+    if(this.niveau === "3" ){
+      startDate = new Date(currentDate.getFullYear(), 10, 1); 
+      endDate = new Date(currentDate.getFullYear()+1, 0, 31); 
+      
+    }else if (this.niveau === "1" || this.niveau === "2"){
+      if(currentDate.getMonth() <= 5 && currentDate.getMonth() >= 1){
+        startDate = new Date(currentDate.getFullYear(), 5, 1); 
+        endDate = new Date(currentDate.getFullYear(), 6, 15); 
+      }
+      else{
+        startDate = new Date(currentDate.getFullYear()+1, 5, 1); 
+        endDate = new Date(currentDate.getFullYear()+1, 6, 15); 
+      }
+    }
+    return currentDate >= startDate && currentDate <= endDate;
+    
+  }
+
+  selectedStageId: number = 0; 
+  selectedStageJurys: any[] = [];
+  selectedEncadrant: any[] = [];
+  openJuryPopup(stageId: number) {
+    this.isJuryPopupOpen = true;
+    const selectedStage = this.dataSource.data.find(item => item.id === stageId);
+    this.selectedStageJurys = selectedStage ? selectedStage.jurys || [] : [];
+  }
+  
+  closeJuryPopup() {
+    this.isJuryPopupOpen = false;
+  }
+
+  openModifierPopup(stageId: number) {
+    this.isModifierPopupOpen = true;
+    this.selectedStage = this.dataSource.data.find(item => item.id === stageId);
+  }
+  
+  closeModifierPopup() {
+    this.isModifierPopupOpen = false;
+  }
+
+  openEncadrantPopup(encadrant: any) {
+    this.isEncadrantPopupOpen = true;
+    this.selectedEncadrant = encadrant;
+  }
+
+  closeEncadrantPopup() {
+    this.isEncadrantPopupOpen = false;
+  }
   
 }

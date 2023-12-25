@@ -1,0 +1,88 @@
+
+.popup-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    height: auto;
+    max-height: 80%;
+    width: 80%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #ccc;
+    z-index: 1000;
+    border-radius: 20px;
+    padding: 20px;
+  }
+
+  .icon{
+    position: absolute;
+    font-size: 25px; 
+    transition: color 0.2s;
+    background: transparent; 
+    border: 1px ;
+    border-radius: 10px;
+    right: 20px;
+    top: 15px;
+    color: #3c3c65;
+}
+
+  .no-data{
+    height: 70px;
+  }
+
+  
+.mat-sort-header-content {
+    text-align: left !important;
+}
+
+.table-responsive{
+    height: fit-content;
+    width: 1000px;
+    top: 80px;
+    left: 50px;
+    
+}
+
+.nameTable{
+    top: 80px;
+    left: 50px;
+    font-size: 25px;
+    color: #3c3c65;
+}
+
+.mat-mdc-table {
+    border-radius: 8px;
+    overflow:hidden !important;
+}
+
+.mat-mdc-table {
+    background: none;
+}
+
+.mat-mdc-table {
+    width: 100px;
+    margin: 20px;
+    margin-bottom: 30px;
+}
+
+.mdc-data-table__table {
+    min-width: 96.8%;
+    border: 0;
+    white-space: normal;
+    border-spacing: 0;
+    table-layout: fixed;
+}
+
+.mdc-data-table__row:last-child .mdc-data-table__cell {
+    border-bottom: none;
+    padding-right: 0px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+
+.mat-mdc-table tbody, .mat-mdc-table tfoot, .mat-mdc-table thead, .mat-mdc-cell, .mat-mdc-footer-cell, .mat-mdc-header-row, .mat-mdc-row, .mat-mdc-footer-row, .mat-mdc-table .mat-mdc-header-cell {
+    background: inherit;
+    padding-right: 0;
+    
+}

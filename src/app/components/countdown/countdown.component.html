@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/a81368914c.js"></script>
+    <title>Home Etudiants</title>
+</head>
+<body>
+    <div class="page">
+        <div class="nav-bar">
+            <div class="img">
+                <img class="ensa" src="../../../assets/logo-ensa-berrechid.png"/>
+            </div>
+            <div class="titre">
+                <h3>Application de gestion des stage</h3>
+            </div>
+            <button class="logout" (click)="logout()" ><i class=' bx bx-log-out' ></i></button>
+            <div class="name">
+                <p>{{nom}} {{prenom}}</p>
+            </div>
+        </div>
+        
+        <div class="count-down-timer">
+            <p>Oops !!</p>
+            <p class="par">L'ouverture de la session de l'ajout de votre type de stage sera ouverte à la date: {{currentTime}}</p>
+            <div class="wrapper">
+              <div class="description">
+                <p>Jours</p>
+                <p>Heures</p>
+                <p>Minutes</p>
+                <p>Secondes</p>
+              </div>
+              <div class="times">
+                <p #days></p>
+                <p #hours></p>
+                <p #minutes></p>
+                <p #seconds></p>
+              </div>
+            </div>
+          </div>
+        
+        
+    </div>
+
+</body>
+</html>
+
+
