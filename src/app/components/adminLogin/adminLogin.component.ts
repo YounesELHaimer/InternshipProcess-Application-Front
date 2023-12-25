@@ -43,7 +43,7 @@ export class AdminLoginComponent implements OnInit {
       (response) => {
         if (response && response.filiere) {
           this.authService.login('admin', response.id);
-          this.router.navigate(['admin/students/view', response.filiere.id]);
+          this.router.navigate(['admin/analytique/view', response.filiere.id]);
           return true;
         } else {
           console.error("La propriété 'filiere' est manquante dans la réponse.");

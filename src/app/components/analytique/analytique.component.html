@@ -1,0 +1,123 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css">
+    
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Etudiants</title>
+</head>
+<body>
+  <div class="sidebar close">
+    <div class="logo-details">
+        <img class="ensaLogo" src="../../../assets/ensa_white.png"/>
+    </div>
+    <ul class="nav-links">
+      <li>
+        <a >
+          <i class='bx bx-line-chart' ></i>
+          <span class="link_name">Analytics</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name"  [routerLink]="['/admin/analytique/view/', filiereId]">Analytique</a></li>
+        </ul>
+      </li>
+      <li>
+        <a [routerLink]="['/admin/students/view', filiereId]">
+          <i class='bx bx-grid-alt' ></i>
+          <span class="link_name">Etudiants</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name"  [routerLink]="['/admin/students/view', filiereId]">Etudiants</a></li>
+        </ul>
+      </li>
+      <li>
+        <div class="iocn-link">
+          <a >
+            <i class='bx bx-collection' ></i>
+            <span class="link_name">Niveau</span>
+          </a>
+          <i class='bx bxs-chevron-down arrow' ></i>
+        </div>
+        <ul class="sub-menu">
+          <li><a class="link_name" >Niveau</a></li>
+          <li> <a [routerLink]="['/admin/FirstYearStudents/view', filiereId]">Première année</a></li>
+          <li> <a [routerLink]="['/admin/SecondYearStudents/view', filiereId]">Deuxième année</a></li>
+          <li> <a [routerLink]="['/admin/ThirdYearStudents/view', filiereId]">Troisième année</a></li>
+        </ul>
+      </li>
+      <li>
+        <div class="iocn-link">
+          <a >
+            <i class='bx bx-book-alt' ></i>
+            <span class="link_name">Stages</span>
+          </a>
+          <i class='bx bxs-chevron-down arrow' ></i>
+        </div>
+        <ul class="sub-menu">
+          <li><a class="link_name" >Stages</a></li>
+          <li><a [routerLink]="['/admin/InitiationStudents/view', filiereId]">Initiation</a></li>
+          <li><a [routerLink]="['/admin/PfaStudents/view', filiereId]">PFA</a></li>
+          <li><a [routerLink]="['/admin/PfeStudents/view', filiereId]">PFE</a></li>
+        </ul>
+      </li>
+      <li>
+        <div class="iocn-link">
+          <a >
+            <i class='bx bx-plug' ></i>
+            <span class="link_name">Professeurs</span>
+          </a>
+          <i class='bx bxs-chevron-down arrow' ></i>
+        </div>
+        <ul class="sub-menu">
+          <li><a class="link_name" >Professeurs</a></li>
+          <li><a [routerLink]="['/admin/jury/view', filiereId]">Jury</a></li>
+          <li><a [routerLink]="['/admin/encadrant/view', filiereId]">Encadrant</a></li>
+          
+        </ul>
+      </li>
+      <li>
+        <div class="profile-details">
+          <div class="profile-content">
+            <!--<img src="image/profile.jpg" alt="profileImg">-->
+          </div>
+          <div class="name-job">
+            <div class="profile_name" >Déconnecter</div>
+           
+          </div>
+          <a [routerLink]="['/login/chef/de/filiere/admin']">
+            <i class='bx bx-log-out'></i>
+          </a>
+          
+          
+        </div>
+  </li>
+</ul>
+</div>
+<section class="home-section">
+  <div class="home-content">
+    <i class='bx bx-menu'></i>
+    <span class="text">Dashboard</span>
+  </div>
+  <div style="margin-left: 50px; margin-top: 30px;" >
+    <div class="top-section" style="box-shadow: 5px 5px 5px #939393;">
+      <app-custom-chart> </app-custom-chart>
+    </div>
+  <div class="middle-section">
+    <div class="widget left">
+      <app-stacked-bar-chart> </app-stacked-bar-chart>
+    </div>
+    <div class="widget right">
+      <app-pie-chart> </app-pie-chart>
+    </div>
+  </div>
+ 
+</div>
+</section>
+</body>
+</html>
+
+<router-outlet></router-outlet>

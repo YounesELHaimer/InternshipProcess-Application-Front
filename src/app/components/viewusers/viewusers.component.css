@@ -268,3 +268,34 @@
     display: none;
   }
 }
+.bg-green {
+  background-color: #d6f0e0;
+  color: #0d6832;
+  display: inline-block;
+  padding: .25em .4em;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 75%;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 25px;
+}
+
+.bg-red {
+  background-color: #fbdada;
+  color: #730d0d;
+  display: inline-block;
+  padding: .25em .4em;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 75%;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 25px;
+}

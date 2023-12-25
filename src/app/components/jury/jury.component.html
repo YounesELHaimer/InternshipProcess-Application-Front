@@ -1,1 +1,261 @@
-<p>jury works!</p>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css">
+    
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Etudiants</title>
+</head>
+<body>
+  <div class="sidebar close">
+    <div class="logo-details">
+        <img class="ensaLogo" src="../../../assets/ensa_white.png"/>
+    </div>
+    <ul class="nav-links">
+      <li>
+        <a >
+          <i class='bx bx-line-chart' ></i>
+          <span class="link_name">Analytics</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name"  [routerLink]="['/admin/analytique/view/', filiereId]">Analytique</a></li>
+        </ul>
+      </li>
+      <li>
+        <a [routerLink]="['/admin/students/view', filiereId]">
+          <i class='bx bx-grid-alt' ></i>
+          <span class="link_name">Etudiants</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name"  [routerLink]="['/admin/students/view', filiereId]">Etudiants</a></li>
+        </ul>
+      </li>
+      <li>
+        <div class="iocn-link">
+          <a >
+            <i class='bx bx-collection' ></i>
+            <span class="link_name">Niveau</span>
+          </a>
+          <i class='bx bxs-chevron-down arrow' ></i>
+        </div>
+        <ul class="sub-menu">
+          <li><a class="link_name" >Niveau</a></li>
+          <li> <a [routerLink]="['/admin/FirstYearStudents/view', filiereId]">Première année</a></li>
+          <li> <a [routerLink]="['/admin/SecondYearStudents/view', filiereId]">Deuxième année</a></li>
+          <li> <a [routerLink]="['/admin/ThirdYearStudents/view', filiereId]">Troisième année</a></li>
+        </ul>
+      </li>
+      <li>
+        <div class="iocn-link">
+          <a >
+            <i class='bx bx-book-alt' ></i>
+            <span class="link_name">Stages</span>
+          </a>
+          <i class='bx bxs-chevron-down arrow' ></i>
+        </div>
+        <ul class="sub-menu">
+          <li><a class="link_name" >Stages</a></li>
+          <li><a [routerLink]="['/admin/InitiationStudents/view', filiereId]">Initiation</a></li>
+          <li><a [routerLink]="['/admin/PfaStudents/view', filiereId]">PFA</a></li>
+          <li><a [routerLink]="['/admin/PfeStudents/view', filiereId]">PFE</a></li>
+        </ul>
+      </li>
+      <li>
+        <div class="iocn-link">
+          <a >
+            <i class='bx bx-plug' ></i>
+            <span class="link_name">Professeurs</span>
+          </a>
+          <i class='bx bxs-chevron-down arrow' ></i>
+        </div>
+        <ul class="sub-menu">
+          <li><a class="link_name" >Professeurs</a></li>
+          <li><a [routerLink]="['/admin/jury/view', filiereId]">Jury</a></li>
+          <li><a [routerLink]="['/admin/encadrant/view', filiereId]">Encadrant</a></li>
+          
+        </ul>
+      </li>
+      <li>
+        <div class="profile-details">
+          <div class="profile-content">
+            <!--<img src="image/profile.jpg" alt="profileImg">-->
+          </div>
+          <div class="name-job">
+            <div class="profile_name" >Déconnecter</div>
+           
+          </div>
+          <a [routerLink]="['/login/chef/de/filiere/admin']">
+            <i class='bx bx-log-out'></i>
+          </a>
+          
+          
+        </div>
+  </li>
+</ul>
+</div>
+      <section class="home-section">
+        <div class="home-content">
+          <i class='bx bx-menu'></i>
+          <span class="text">Gestion des Jurys</span>
+        </div>
+      
+        <!-- Add New Professeur Modal Start -->
+        <div class="modal fade" tabindex="-1" id="addNewProfesseurModal">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Ajouter un Jury</h5>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form id="add-professeur-form" class="p-2" [formGroup]="addProfesseurForm" novalidate>
+                  <div class="mb-3">
+                    <input formControlName="nom" type="text" class="form-control form-control-lg" placeholder="Entrez le Nom" required>
+                    <div class="invalid-feedback">Le Nom est requis !</div>
+                  </div>
+                  <div class="mb-3">
+                    <input formControlName="prenom" type="text" class="form-control form-control-lg" placeholder="Entrez le Prénom" required>
+                    <div class="invalid-feedback">Le Prénom est requis !</div>
+                  </div>
+                  <div class="mb-3">
+                    <input formControlName="email" type="email" class="form-control form-control-lg" placeholder="Entrez l'E-mail" required>
+                    <div class="invalid-feedback">L'E-mail est requis !</div>
+                  </div>
+                  <div class="mb-3">
+                    <input formControlName="departement" type="text" class="form-control form-control-lg" placeholder="Entrez le Département" required>
+                    <div class="invalid-feedback">Le Département est requis !</div>
+                  </div>
+                  <div class="mb-3">
+                    <button type="button" class="btn btn-primary btn-block btn-lg" (click)="addProfesseur()">Ajouter un Jury</button>
+                   
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <!-- Edit Professeur Modal Start -->
+        <div class="modal fade" tabindex="-1" id="editProfesseurModal">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Modifier ce Professeur</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form id="edit-professeur-form" class="p-2" [formGroup]="updateProfesseurForm" novalidate>
+                  <input formControlName="id" type="hidden">
+                  <div class="mb-3">
+                    <input formControlName="nom" type="text" class="form-control form-control-lg" placeholder="Entrez le Nom" required>
+                    <div class="invalid-feedback">Le Nom est requis !</div>
+                  </div>
+                  <div class="mb-3">
+                    <input formControlName="prenom" type="text" class="form-control form-control-lg" placeholder="Entrez le Prénom" required>
+                    <div class="invalid-feedback">Le Prénom est requis !</div>
+                  </div>
+                  <div class="mb-3">
+                    <input formControlName="email" type="email" class="form-control form-control-lg" placeholder="Entrez l'E-mail" required>
+                    <div class="invalid-feedback">L'E-mail est requis !</div>
+                  </div>
+                  <div class="mb-3">
+                    <input formControlName="departement" type="text" class="form-control form-control-lg" placeholder="Entrez le Département" required>
+                    <div class="invalid-feedback">Le Département est requis !</div>
+                  </div>
+                  <div class="mb-3">
+                    <button type="button" class="btn btn-success btn-block btn-lg" (click)="updateProfesseur()">Modifier le Professeur</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="container mt-5">
+          <div class="row">
+            <div class="col-lg-12 d-flex justify-content-between align-items-center">
+              <div>
+                <h4 class="text-primary">Liste des Professeurs</h4>
+              </div>
+              <div>
+                <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#addNewProfesseurModal">Ajouter un Jury</button>
+                <br><br>
+              </div>
+            </div>
+          </div>
+          <p>Nombre de stages non assigner : {{ nullJuryCount }}</p>
+          <hr>
+          <div class="row">
+            <div class="col-lg-12">
+              <div id="showAlert"></div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="table-container table-responsive">
+                <table class="table table-striped table-bordered text-center">
+                    <thead>
+                        <tr>
+                          <!-- Replace the ID column with a checkbox -->
+                          <th><input type="checkbox" (change)="selectAll()" [checked]="allSelected"></th>
+                          <th>Nom</th>
+                          <th>Prénom</th>
+                          <th>E-mail</th>
+                          <th>Département</th>
+                          <th>Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let professeur of visibleProfesseurs">
+                          <!-- Replace the ID cell with a checkbox -->
+                          <td><input type="checkbox" [(ngModel)]="selectedProfesseurs[professeur.id]" (change)="updateSelection()"></td>
+                          <td>{{ professeur.nom }}</td>
+                          <td>{{ professeur.prenom }}</td>
+                          <td>{{ professeur.email }}</td>
+                          <td>{{ professeur.departement }}</td>
+                          <td>
+                        <div class="d-inline mx-2">
+                          <button class="btn btn-warning" (click)="editProfesseur(professeur.id)" type="button" data-toggle="modal" data-target="#editProfesseurModal">Modifier</button>
+                        </div>
+                        <div class="d-inline">
+                          <button class="btn btn-danger" (click)="deleteProfesseur(professeur.id)" type="button">Supprimer</button>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div class="row">
+                    <div class="col-lg-6">
+                      <input type="file" (change)="onFileChange($event)" accept=".csv">
+                      <br>
+                      <button class="btn btn-success" (click)="importProfesseurs()" style="margin-top: 10px;">Importer les Professeurs</button>
+                      <button class="btn btn-primary" (click)="assignStages()" style="margin: 10px; margin-top: 19px;">Assigner</button>
+                      <!-- Show success message when assignStagesSuccess is true -->
+                      <div *ngIf="assignStagesSuccess" class="text-success" style="margin-top: 10px;">Assignation réussie!</div>
+                    </div>
+                    <div class="col-lg-6 text-end">
+                      <!-- Right column for "Previous" and "Next" buttons -->
+                      <div class="ms-auto">
+                        <button class="btn btn-secondary" (click)="prevPage()">Previous</button>
+                        <button class="btn btn-secondary" (click)="nextPage()" style="margin-left: 10px;">Next</button>
+                      </div>
+                    </div>
+                  </div>
+                  
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      
+    
+   
+</body>
+</html>
+
+<router-outlet></router-outlet>

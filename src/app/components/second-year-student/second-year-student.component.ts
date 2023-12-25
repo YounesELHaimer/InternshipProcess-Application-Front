@@ -1,8 +1,13 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { filter } from 'rxjs';
 import { Etudiant } from 'src/app/Etudiant';
 import { AppService } from 'src/app/app.service';
+
+import { Stage } from 'src/app/Stage';
+import { StageDetailsComponent } from '../viewusers/StageDetailsComponent';
 
 @Component({
   selector: 'app-second-year-student',
@@ -12,19 +17,18 @@ import { AppService } from 'src/app/app.service';
 export class SecondYearStudentComponent {
   myScriptElement: HTMLScriptElement | undefined;
   firstYearEtudiants: Etudiant[] = [];
-  filiereId: number | undefined;
+
+  etudiants: any[] | undefined
+  url: string = "http://localhost:4200/";
+  isEditMode: boolean = false;
   addEtudiantForm: FormGroup;
   updateEtudiantForm: FormGroup;
-  isEditMode: boolean = false;
-  selectedFile: File | undefined;
+  selectedFile: File | undefined;  
   currentPage = 1;
   itemsPerPage = 7;
+  filiereId: number | undefined;
 
-  constructor(
-    private service: AppService,
-    private fb: FormBuilder,
-    private route: ActivatedRoute
-  ) {
+  constructor(private service: AppService, private fb: FormBuilder, private route: ActivatedRoute, private router: Router,private dialog: MatDialog) {
     this.myScriptElement = document.createElement('script');
     this.myScriptElement.src = ' https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.bundle.min.js';
     document.body.appendChild(this.myScriptElement);
@@ -34,26 +38,45 @@ export class SecondYearStudentComponent {
       email: ['', [Validators.required, Validators.email]],
       cne: ['', Validators.required],
       cin: ['', Validators.required],
-      niveau: ['2', Validators.required], // Set the Niveau for first-year students
+      niveau: ['3', Validators.required],
+      codeApogee: ['', Validators.required],
+      
     });
 
+
     this.updateEtudiantForm = this.fb.group({
-      id: [''],
+      
       nom: ['', Validators.required],
       prenom: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       cne: ['', Validators.required],
       cin: ['', Validators.required],
-      niveau: ['2'] // Set the Niveau for first-year students
+      niveau: ['3'],
     });
   }
 
-  ngOnInit(): void {
-    this.route.params.subscribe((params) => {
-      this.filiereId = params['filiereId'];
-      this.fetchSecondYearEtudiants();
-    });
-  }
+  
+    ngOnInit(): void {
+      this.route.params.subscribe((params) => {
+        this.filiereId = params['filiereId'];
+        this.fetchSecondYearEtudiants();
+      });
+    }
+    showDetails(etudiantId: number) {
+      this.service.getStagesByEtudiantId(etudiantId).subscribe(stages => {
+        this.showDetailsPopup(stages);
+      });
+    }
+  
+    showDetailsPopup(stages: Stage[]) {
+      const dialogRef = this.dialog.open(StageDetailsComponent, {
+        data: { stages: stages },
+      });
+  
+      dialogRef.afterClosed().subscribe(result => {
+        console.log('Modal closed with result:', result);
+      });
+    }
 
   fetchSecondYearEtudiants() {
     this.service.getEtudiantsByFiliereId(this.filiereId!).subscribe((etudiants) => {

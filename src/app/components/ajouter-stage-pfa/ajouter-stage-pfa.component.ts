@@ -46,7 +46,7 @@ export class AjouterStagePFAComponent {
         Object.keys(this.registerForm.controls).forEach(controlName => {
           console.log(`Control: ${controlName}, Errors:`, this.registerForm.get(controlName)?.errors);
         });
-        return;
+        return; 
     }
     
     this.route.params.subscribe((params) => {

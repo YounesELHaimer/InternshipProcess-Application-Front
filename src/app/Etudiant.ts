@@ -8,4 +8,5 @@ export interface Etudiant {
     niveau: string
     motDePasse: string
     codeApogee: string
+    stageTrouver: boolean
 }
