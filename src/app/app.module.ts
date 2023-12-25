@@ -26,6 +26,22 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { EncadrantComponent } from './components/encadrant/encadrant.component';
 import { JuryComponent } from './components/jury/jury.component';
+import { StageDetailsComponent } from './components/viewusers/StageDetailsComponent';
+import { MatDialogModule } from '@angular/material/dialog';
+import { AnalytiqueComponent } from './components/analytique/analytique.component';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatCardModule } from '@angular/material/card';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { LayoutModule } from '@angular/cdk/layout';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ChartModule } from 'angular-highcharts';
+import { PieChartComponent } from './components/pie-chart/pie-chart.component';
+import { StackedBarChartComponent } from './components/stacked-bar-chart/stacked-bar-chart.component';
+import { CustomChartComponent } from './components/custom-chart/custom-chart.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+
 
 
 @NgModule({
@@ -42,7 +58,12 @@ import { JuryComponent } from './components/jury/jury.component';
     PfaStudentsComponent,
     InitiationStudentsComponent,
     EncadrantComponent,
-    JuryComponent
+    JuryComponent,
+    StageDetailsComponent,
+    AnalytiqueComponent,
+    PieChartComponent,
+    StackedBarChartComponent,
+    CustomChartComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +75,17 @@ import { JuryComponent } from './components/jury/jury.component';
     MatTableModule,
     MatSortModule,
     NgbModule,
-    FormsModule
+    FormsModule,
+    MatDialogModule,
+    MatGridListModule,
+    MatCardModule,
+    MatMenuModule,
+    MatIconModule,
+    MatButtonModule,
+    LayoutModule,
+    FontAwesomeModule,
+    ChartModule,
+    NgxChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -14,6 +14,9 @@ import { PfaStudentsComponent } from './components/pfa-students/pfa-students.com
 import { InitiationStudentsComponent } from './components/initiation-students/initiation-students.component';
 import { EncadrantComponent } from './components/encadrant/encadrant.component';
 import { JuryComponent } from './components/jury/jury.component';
+import { AnalytiqueComponent } from './components/analytique/analytique.component';
+import { PieChartComponent } from './components/pie-chart/pie-chart.component';
+import { CustomChartComponent } from './components/custom-chart/custom-chart.component';
 
 
 const routes: Routes = [
@@ -74,6 +77,18 @@ const routes: Routes = [
   {
     path: 'admin/jury/view/:filiereId',
     component: JuryComponent,
+  },
+  {
+    path: 'admin/analytique/view/:filiereId',
+    component: AnalytiqueComponent,
+  },
+  {
+    path: 'admin/pie-chart/view/:filiereId',
+    component: PieChartComponent,
+  },
+  {
+    path: 'admin/custom-chart/view/:filiereId',
+    component: CustomChartComponent,
   },
 ];
 
