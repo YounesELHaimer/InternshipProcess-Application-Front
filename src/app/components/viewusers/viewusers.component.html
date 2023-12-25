@@ -10,78 +10,92 @@
     <title>Home Etudiants</title>
 </head>
 <body>
-    <div class="sidebar close">
-        <div class="logo-details">
-            <img class="ensaLogo" src="../../../assets/ensa_white.png"/>
-        </div>
-        <ul class="nav-links">
-          <li>
-            <a href="#">
-              <i class='bx bx-line-chart' ></i>
-              <span class="link_name">Analytics</span>
-            </a>
-            <ul class="sub-menu blank">
-              <li><a class="link_name" href="#">Analytics</a></li>
-            </ul>
-          </li>
-          <li>
-            <a [routerLink]="['/admin/students/view', filiereId]">
-              <i class='bx bx-grid-alt' ></i>
-              <span class="link_name">Etudiants</span>
-            </a>
-            <ul class="sub-menu blank">
-              <li><a class="link_name"  [routerLink]="['/admin/students/view', filiereId]">Etudiants</a></li>
-            </ul>
-          </li>
-          <li>
-            <div class="iocn-link">
-              <a href="#">
-                <i class='bx bx-collection' ></i>
-                <span class="link_name">Niveau</span>
-              </a>
-              <i class='bx bxs-chevron-down arrow' ></i>
-            </div>
-            <ul class="sub-menu">
-              <li><a class="link_name" href="#">Niveau</a></li>
-              <li> <a [routerLink]="['/admin/FirstYearStudents/view', filiereId]">Première année</a></li>
-              <li> <a [routerLink]="['/admin/SecondYearStudents/view', filiereId]">Deuxième année</a></li>
-              <li> <a [routerLink]="['/admin/ThirdYearStudents/view', filiereId]">Troisième année</a></li>
-            </ul>
-          </li>
-          <li>
-            <div class="iocn-link">
-              <a href="#">
-                <i class='bx bx-book-alt' ></i>
-                <span class="link_name">Stages</span>
-              </a>
-              <i class='bx bxs-chevron-down arrow' ></i>
-            </div>
-            <ul class="sub-menu">
-              <li><a class="link_name" href="#">Stages</a></li>
-              <li><a [routerLink]="['/admin/InitiationStudents/view', filiereId]">Initiation</a></li>
-              <li><a [routerLink]="['/admin/PfaStudents/view', filiereId]">PFA</a></li>
-              <li><a [routerLink]="['/admin/PfeStudents/view', filiereId]">PFE</a></li>
-            </ul>
-          </li>
-          <li>
-            <div class="iocn-link">
-              <a href="#">
-                <i class='bx bx-plug' ></i>
-                <span class="link_name">Professeurs</span>
-              </a>
-              <i class='bx bxs-chevron-down arrow' ></i>
-            </div>
-            <ul class="sub-menu">
-              <li><a class="link_name" >Professeurs</a></li>
-              <li><a [routerLink]="['/admin/jury/view', filiereId]">Jury</a></li>
-              <li><a [routerLink]="['/admin/encadrant/view', filiereId]">Encadrant</a></li>
-              
-            </ul>
-          </li>
-          <li>
+  <div class="sidebar close">
+    <div class="logo-details">
+        <img class="ensaLogo" src="../../../assets/ensa_white.png"/>
+    </div>
+    <ul class="nav-links">
+      <li>
+        <a >
+          <i class='bx bx-line-chart' ></i>
+          <span class="link_name">Analytics</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name"  [routerLink]="['/admin/analytique/view/', filiereId]">Analytique</a></li>
+        </ul>
       </li>
-    </ul>
-  </div>
+      <li>
+        <a [routerLink]="['/admin/students/view', filiereId]">
+          <i class='bx bx-grid-alt' ></i>
+          <span class="link_name">Etudiants</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name"  [routerLink]="['/admin/students/view', filiereId]">Etudiants</a></li>
+        </ul>
+      </li>
+      <li>
+        <div class="iocn-link">
+          <a >
+            <i class='bx bx-collection' ></i>
+            <span class="link_name">Niveau</span>
+          </a>
+          <i class='bx bxs-chevron-down arrow' ></i>
+        </div>
+        <ul class="sub-menu">
+          <li><a class="link_name" >Niveau</a></li>
+          <li> <a [routerLink]="['/admin/FirstYearStudents/view', filiereId]">Première année</a></li>
+          <li> <a [routerLink]="['/admin/SecondYearStudents/view', filiereId]">Deuxième année</a></li>
+          <li> <a [routerLink]="['/admin/ThirdYearStudents/view', filiereId]">Troisième année</a></li>
+        </ul>
+      </li>
+      <li>
+        <div class="iocn-link">
+          <a >
+            <i class='bx bx-book-alt' ></i>
+            <span class="link_name">Stages</span>
+          </a>
+          <i class='bx bxs-chevron-down arrow' ></i>
+        </div>
+        <ul class="sub-menu">
+          <li><a class="link_name" >Stages</a></li>
+          <li><a [routerLink]="['/admin/InitiationStudents/view', filiereId]">Initiation</a></li>
+          <li><a [routerLink]="['/admin/PfaStudents/view', filiereId]">PFA</a></li>
+          <li><a [routerLink]="['/admin/PfeStudents/view', filiereId]">PFE</a></li>
+        </ul>
+      </li>
+      <li>
+        <div class="iocn-link">
+          <a >
+            <i class='bx bx-plug' ></i>
+            <span class="link_name">Professeurs</span>
+          </a>
+          <i class='bx bxs-chevron-down arrow' ></i>
+        </div>
+        <ul class="sub-menu">
+          <li><a class="link_name" >Professeurs</a></li>
+          <li><a [routerLink]="['/admin/jury/view', filiereId]">Jury</a></li>
+          <li><a [routerLink]="['/admin/encadrant/view', filiereId]">Encadrant</a></li>
+          
+        </ul>
+      </li>
+      <li>
+        <div class="profile-details">
+          <div class="profile-content">
+            <!--<img src="image/profile.jpg" alt="profileImg">-->
+          </div>
+          <div class="name-job">
+            <div class="profile_name" >Déconnecter</div>
+           
+          </div>
+          <a [routerLink]="['/login/chef/de/filiere/admin']">
+            <i class='bx bx-log-out'></i>
+          </a>
+          
+          
+        </div>
+  </li>
+</ul>
+</div>
       <section class="home-section">
         <div class="home-content">
           <i class='bx bx-menu' ></i>
@@ -168,7 +182,7 @@
             <div class="invalid-feedback">CIN is required!</div>
           </div>
           <div class="mb-3">
-            <button type="button" class="btn btn-success btn-block btn-lg" (click)="updateEtudiant()">Update User</button>
+            <button type="button" class="btn btn-success btn-block btn-lg" (click)="updateEtudiant()">Modifier</button>
           </div>
         </form>
       </div>
@@ -180,10 +194,10 @@
   <div class="row">
     <div class="col-lg-12 d-flex justify-content-between align-items-center">
       <div>
-        <h4 class="text-primary">All users in the database!</h4>
+        <h4 class="text-primary">Tous les etudiants de la filière !</h4>
       </div>
       <div>
-        <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#addNewUserModal">Add New User</button>
+        <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#addNewUserModal">Ajouter</button>
        <br>
        <br>
         
@@ -251,13 +265,13 @@
             <!-- Left column for "Import Etudiants" button -->
             <input type="file" (change)="onFileChange($event)" accept=".csv">
             <br>
-            <button class="btn btn-success" (click)="importEtudiants()" style="margin-top:10px ;">Import Etudiants</button>
+            <button class="btn btn-success" (click)="importEtudiants()" style="margin-top:10px ;">Importer Etudiants</button>
           </div>
       
           <div class="col-lg-6 text-end">
             <!-- Right column for "Previous" and "Next" buttons -->
-            <button class="btn btn-secondary" (click)="prevPage()">Previous</button>
-            <button class="btn btn-secondary" (click)="nextPage()" style="margin-left:10px ;">Next</button>
+            <button class="btn btn-secondary" (click)="prevPage()">Précédent</button>
+            <button class="btn btn-secondary" (click)="nextPage()" style="margin-left:10px ;">Suivant</button>
           </div>
         </div>
       </div>
