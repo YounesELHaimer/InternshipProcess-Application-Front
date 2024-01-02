@@ -29,35 +29,23 @@ export class AdminLoginComponent implements OnInit {
   ngOnInit(): void {}
 
   login() {
-    // Ajoutez ici la logique de vérification des données de connexion
-    const isValidCredentials = this.checkCredentials();
-
-    if ( !isValidCredentials) {
-      this.errorMessage = "l'adresse électronique et le mot de passe ne correspondent pas. Réessayez.";
-    }
-
-  }
-
-  private checkCredentials(): boolean {
     this.appService.loginChefFiliere(this.loginForm.value.email, this.loginForm.value.motDePasse).subscribe(
       (response) => {
         if (response && response.filiere) {
           this.authService.login('admin', response.id);
           this.router.navigate(['admin/analytique/view', response.filiere.id]);
-          return true;
         } else {
-          console.error("La propriété 'filiere' est manquante dans la réponse.");
-          return false;
+          this.errorMessage = "l'adresse électronique et le mot de passe ne correspondent pas. Réessayez.";
         }
       },
       (error) => {
         this.errorMessage =
           "L'adresse électronique et le mot de passe ne correspondent pas. Réessayez.";
-          return false;
       }
     );
-    return false;
+
   }
+
   
   
   

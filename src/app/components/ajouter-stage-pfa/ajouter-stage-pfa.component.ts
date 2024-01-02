@@ -38,7 +38,7 @@ export class AjouterStagePFAComponent {
   onSubmit() {
     this.submitted = true;
     const newStage = this.registerForm.value;
-    newStage.type = "PFE" ;
+    newStage.type = "PFA" ;
     newStage.dateDeDebut = moment(newStage.dateDeDebut, 'YYYY-MM-DD').toDate();
     newStage.dateFin = moment(newStage.dateFin, 'YYYY-MM-DD').toDate();
     if (this.registerForm.invalid) {
@@ -46,7 +46,7 @@ export class AjouterStagePFAComponent {
         Object.keys(this.registerForm.controls).forEach(controlName => {
           console.log(`Control: ${controlName}, Errors:`, this.registerForm.get(controlName)?.errors);
         });
-        return; 
+        return;
     }
     
     this.route.params.subscribe((params) => {

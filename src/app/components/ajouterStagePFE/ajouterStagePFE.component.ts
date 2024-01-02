@@ -5,7 +5,6 @@ import { AppService } from 'src/app/app.service';
 import { AuthService } from 'src/app/auth.service';
 import {LiveAnnouncer} from '@angular/cdk/a11y';
 import {MatSort, Sort} from '@angular/material/sort';
-import {MatTableDataSource} from '@angular/material/table';
 import * as moment from 'moment';
 
 
@@ -44,6 +43,7 @@ export class AjouterStagePFEComponent implements OnInit {
     newStage.type = "PFE" ;
     newStage.dateDeDebut = moment(newStage.dateDeDebut, 'YYYY-MM-DD').toDate();
     newStage.dateFin = moment(newStage.dateFin, 'YYYY-MM-DD').toDate();
+    newStage.annee = newStage.dateFin.getFullYear().toString();
     if (this.registerForm.invalid) {
         console.log("Form is invalid. Aborting submission.");
         Object.keys(this.registerForm.controls).forEach(controlName => {

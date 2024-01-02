@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http'
+import { HttpClient, HttpParams } from '@angular/common/http'
 import { Observable, catchError, throwError } from 'rxjs'
 import { Etudiant } from './Etudiant';
 import { ChefFiliere } from './ChefFiliere';
@@ -72,11 +72,6 @@ export class AppService {
   getStagesByEtudiantId(id: number): Observable<Stage[]> {
     return this.http.get<Stage[]>(`${this.url}stages/etudiant/${id}`);
   }
-  
-  // Ajoutez une méthode pour compter le nombre d'étudiants par niveau et par statut de stage
-  getStatsByNiveau(filiereId: number): Observable<any[]> {
-    return this.http.get<any[]>(`${this.url}${filiereId}/statsByNiveau`);
-  }
 
   updateStage(id: number, stage: Stage): Observable<void> {
     return this.http.put<void>(`${this.url}stage/${id}`, stage);
@@ -95,7 +90,6 @@ export class AppService {
   getAllProfesseurs(): Observable<Professeur[]> {
     return this.http.get<Professeur[]>(`${this.url}professeurs`);
   }
-
   getProfesseurById(id: number): Observable<Professeur> {
     return this.http.get<Professeur>(`${this.url}professeurs/${id}`);
   }
@@ -134,42 +128,6 @@ export class AppService {
   countStagesByYearAndFiliereIdAndEncadrantIsNull(year: string, filiereId: number): Observable<number> {
     const url = `${this.url}stages/count/null-encadrant/${filiereId}?year=${year}`;
     return this.http.get<number>(url);
-  }
-  assignJuriesToStages(filiereId: number, juryIds: number[], year: string): Observable<any> {
-    const url = `${this.url}stages/assign/juries/${filiereId}`;
-
-    let params = new HttpParams().set('year', year);
-
-    juryIds.forEach(id => {
-      params = params.append('juryIds', id.toString());
-    });
-
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json'
-      // Add any other headers if needed
-    });
-
-    return this.http.post(url, null, { headers: headers, params: params })
-      .pipe(
-        catchError(this.handleError)
-      );
-  }
-
-  private handleError(error: any): Observable<never> {
-    console.error('An error occurred:', error);
-    return throwError(error.message || 'server error');
-  }
-  countStagesWithNullJury(year: string, filiereId: number): Observable<number> {
-    const url = `${this.url}stages/count/null-jury/${filiereId}`;
-    const params = new HttpParams().set('year', year);
-    return this.http.get<number>(url, { params });
-  }
-  getNombreEtudiantsSansStage(filiereId: number): Observable<number> {
-    return this.http.get<number>(`${this.url}nombreSansStage/${filiereId}`);
-  }
-
-  getNombreEtudiantsAvecStage(filiereId: number): Observable<number> {
-    return this.http.get<number>(`${this.url}nombreAvecStage/${filiereId}`);
   }
   
 }

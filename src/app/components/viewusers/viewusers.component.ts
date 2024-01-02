@@ -1,12 +1,8 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { MatDialog } from '@angular/material/dialog';
-import { filter } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Etudiant } from 'src/app/Etudiant';
 import { AppService } from 'src/app/app.service';
-import { StageDetailsComponent } from './StageDetailsComponent';
-import { Stage } from 'src/app/Stage';
 
 @Component({
   selector: 'app-viewusers',
@@ -28,7 +24,7 @@ export class ViewusersComponent implements OnInit {
   itemsPerPage = 7;
   filiereId: number | undefined;
 
-  constructor(private service: AppService, private fb: FormBuilder, private route: ActivatedRoute, private router: Router,private dialog: MatDialog) {
+  constructor(private service: AppService, private fb: FormBuilder, private route: ActivatedRoute) {
     this.myScriptElement = document.createElement('script');
     this.myScriptElement.src = ' https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.bundle.min.js';
     document.body.appendChild(this.myScriptElement);
@@ -38,26 +34,21 @@ export class ViewusersComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       cne: ['', Validators.required],
       cin: ['', Validators.required],
-      niveau: ['', Validators.required],
-      codeApogee: ['', Validators.required],
       
     });
 
 
     this.updateEtudiantForm = this.fb.group({
-      
+      id: [''],
       nom: ['', Validators.required],
       prenom: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       cne: ['', Validators.required],
       cin: ['', Validators.required],
-      niveau: [''],
     });
   }
 
   ngOnInit(): void {
-   
-  
     this.route.params.subscribe((params) => {
       this.filiereId = params['filiereId'];
       // Utilize filiereId as needed
@@ -65,24 +56,8 @@ export class ViewusersComponent implements OnInit {
       this.fetchEtudiants(this.filiereId!);
     });
   }
-  showDetails(etudiantId: number) {
-    this.service.getStagesByEtudiantId(etudiantId).subscribe(stages => {
-      this.showDetailsPopup(stages);
-    });
-  }
-
-  showDetailsPopup(stages: Stage[]) {
-    const dialogRef = this.dialog.open(StageDetailsComponent, {
-      data: { stages: stages },
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('Modal closed with result:', result);
-    });
-  }
-
+  
   fetchEtudiants(filiereId: number) {
-   
     // Assurez-vous que filiereId existe avant d'effectuer la requête
     if (filiereId) {
       // Utilisez l'ID de la filière pour récupérer les étudiants associés à cette filière
@@ -93,7 +68,6 @@ export class ViewusersComponent implements OnInit {
         this.currentPage = 1;
       });
     } else {
-      // Gérez le cas où filiereId n'est pas disponible (peut-être rediriger vers une page d'erreur ou effectuer une autre action)
       console.error("ID de filière non disponible");
     }
   }
@@ -212,6 +186,8 @@ export class ViewusersComponent implements OnInit {
   onFileChange(event: any) {
     this.selectedFile = event.target.files[0];
   }
+
+  
 
   
   
